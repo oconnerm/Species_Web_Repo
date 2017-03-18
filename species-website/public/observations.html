@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Luminous Identification">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>Luminous ID - Observation</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Luminous ID">
+    <meta name="theme-color" content="#303F9F">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Luminous ID">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
+
+    <!-- Tile icon for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <meta name="msapplication-navbutton-color" content="#303F9F">
+
+    <!-- Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Snippet" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Luminous ID</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li><a href="fieldguide.html">Field Guide</a></li>
+            <li><a href="observations.html">Observations</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mobileapps.html">Mobile Apps</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="sisu.html">Sign In/Up</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+	<!-- *****************************************************************************************************************
+	 BODY
+	 ***************************************************************************************************************** -->
+	 <div id="twrap">
+	 	<div class="container centered">
+	 		<div class="row">
+	 			<div class="col-lg-8 col-lg-offset-2">
+                    <h1>Observations</h1>
+	 			</div>
+	 		</div>
+	 	</div>
+	 </div>
+	 
+		<!-- *****************************************************************************************************************
+	 FOOTER
+	 ***************************************************************************************************************** -->
+	 <div id="footerwrap">
+	 	<div class="container">
+		 	<div class="row">
+		 		<div class="col-lg-4">
+		 			<h4>Species Information</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 			  The species in this app are a representative, but not exhaustive, list of species growing at the University of Colorado’s Mountain Research Station and Niwot Ridge. For more information regarding the species or their attributes, please contact Dr. Jane Smith (jane.g.smith@colorado.edu).
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Support</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 			  Provided by the National Science Foundation through a Long Term Research in Environmental Biology grant to DF Doak and WF Morris and the Long Term Ecological Research program at Niwot Ridge.
+		 			</p>
+		 		</div>
+		 		<div class="col-lg-4">
+		 			<h4>Our Address</h4>
+		 			<div class="hline-w"></div>
+		 			<p>
+		 			  University of Colorado Boulder,<br/>
+		 			  Regent Administrative Center,<br/>
+		 			  2055 Regent Drive, Rm. 101,<br/>
+		 			  Boulder, CO 80309-0020,<br/>
+		 			</p>
+		 		</div>
+		 	</div>
+	 	</div>
+	 </div>
+	 
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks",
+        authDomain: "speciesid-ca814.firebaseapp.com",
+        databaseURL: "https://speciesid-ca814.firebaseio.com",
+        storageBucket: "speciesid-ca814.appspot.com",
+        messagingSenderId: "794603922973"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+  </body>
+</html>
