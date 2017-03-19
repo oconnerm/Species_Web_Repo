@@ -487,6 +487,12 @@ iframe {
 #right_frame {
     width: calc(75% - 4px);
 }
+/* Image */
+img {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
 
 
 /* Filter button */
