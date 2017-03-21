@@ -304,7 +304,7 @@ a:focus {
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 900px;
+	min-height: 1000px;
 	width: 100%;
 	
     -webkit-background-size: 100%;
@@ -470,16 +470,15 @@ csmall2 {
 }
 
 /* iframes */
-
 iframe {
     display:inline-block;
+    padding:25px;
 }
 
 #left_frame,
 #right_frame {
     float: left;
 }
-
 #left_frame {
     width: calc(25% - 4px);
 }
@@ -487,6 +486,7 @@ iframe {
 #right_frame {
     width: calc(75% - 4px);
 }
+
 /* Image */
 img {
     display: block;
@@ -494,6 +494,26 @@ img {
     width: 40%;
 }
 
+/* Bold */
+b, strong {
+     color: #00b3fe;
+}
+
+/* Home Section */
+.home_section {
+    border-radius: 10px;
+    background-color:rgba(0, 0, 0, 0.75);
+    padding: 25px; 
+    min-height: 575px;
+}
+
+/* Field Guide Section */
+.field_guide_section {
+    border-radius: 10px;
+    background-color: #384452;
+    padding: 25px; 
+    min-height: 575px;
+}
 
 /* Filter button */
 .dropbtn {

@@ -57,8 +57,8 @@
           <ul class="nav navbar-nav">
             <li><a href="fieldguide.html">Field Guide</a></li>
             <li><a href="observations.html">Observations</a></li>
-            <li><a href="about.html">About</a></li>
             <li><a href="mobileapps.html">Mobile Apps</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="sisu.html">Sign In/Up</a></li>
           </ul>
@@ -74,81 +74,35 @@
 	 		<div class="row">
 	 			<div class="col-lg-8 col-lg-offset-2">
 
-                  <h1>Field Guide</h1>
+          <h1>Field Guide</h1>
 
-	                <input id="txtSearch" type="text" style="height:32px;width:200px"placeholder="Search...">
-					        <button id="btnSearch" class="btn btn-action" style="height:32px;width:90px">Search</button>
-					        <button id="btnFilter" class="btn btn-action" style="height:32px;width:90px">Filter</button>
-
-<!--
-					<div class="dropdown">
-					  <button onclick="myFunction()" class="dropbtn" ">Filter</button>
-					  <div id="myDropdown" class="dropdown-content">
-					    <a href="#">Forbs</a>
-					    <a href="#">Gramminoids</a>
-					    <a href="#">Woody</a>
-					    <a href="#">Family Names</a>
-					  </div>
-					</div>
--->
-
+          <input id="txtSearch" type="text" style="height:32px;width:200px" placeholder="Search...">
+	        <button id="btnSearch" class="btn btn-action" style="height:32px;width:90px">Search</button>
+	        <button id="btnFilter" class="btn btn-action" style="height:32px;width:90px">Filter</button>
 					<button id="btnDownload" class="btn btn-action" style="height:32px;width:120px">Download CSV</button>
+          <h2></h2>
 
-					<h2></h2>	
+          <div class="field_guide_section">
+    				<iframe id="left_frame" src="fieldguide_data.html" style="height:550px;width:50%;"></iframe>
+    				<iframe id="right_frame" src="fieldguide_display.html" style="height:550px;width:50%;"></iframe>
 
-					<iframe id="left_frame" src="fieldguide_data.html" style="height:1000px;width:50%";></iframe>
-					<iframe id="right_frame" src="fieldguide_display.html" style="height:1000px;width:50%";></iframe>
-
-          <h2 id="display_species" style="visibility: hidden;">Achillea millefolium</h2>
-          <h2 id="display_common_name" style="visibility: hidden;">Garret common yarrow</h2>
-          <h2 id="display_family_name" style="visibility: hidden;">Asteraceae</h2>
-          <h2 id="display_synonyms" style="visibility: hidden;">Achillea lanulosa</h2>
-          <h2 id="display_growth_form" style="visibility: hidden;">forb</h2>
-          <h2 id="display_folower_color" style="visibility: hidden;">white</h2>
-          <h2 id="display_flower_shape" style="visibility: hidden;">composite</h2>
-          <h2 id="display_habitat" style="visibility: hidden;">dry meadow and wet meadow</h2>
-          <h2 id="display_leaf_arrangement" style="visibility: hidden;">alternate</h2>
-          <h2 id="display_leaf_shape" style="visibility: hidden;">other</h2>
-          <h2 id="display_petal_number" style="visibility: hidden;">NA</h2>
-          <h2 id="display_notes" style="visibility: hidden;">NA</h2>
-          <h2 id="display_photo_credit" style="visibility: hidden;">JG Smith</h2>
+            <h2 id="display_species" style="display:none;">Achillea millefolium</h2>
+            <h2 id="display_common_name" style="display:none;">Garret common yarrow</h2>
+            <h2 id="display_family_name" style="display:none;">Asteraceae</h2>
+            <h2 id="display_synonyms" style="display:none;">Achillea lanulosa</h2>
+            <h2 id="display_growth_form" style="display:none;">forb</h2>
+            <h2 id="display_folower_color" style="display:none;">white</h2>
+            <h2 id="display_flower_shape" style="display:none;">composite</h2>
+            <h2 id="display_habitat" style="display:none;">dry meadow and wet meadow</h2>
+            <h2 id="display_leaf_arrangement" style="display:none;">alternate</h2>
+            <h2 id="display_leaf_shape" style="display:none;">other</h2>
+            <h2 id="display_petal_number" style="display:none;">NA</h2>
+            <h2 id="display_notes" style="display:none;">NA</h2>
+            <h2 id="display_photo_credit" style="display:none;">JG Smith</h2>
+          </div>
 
 	 			</div>
 	 		</div>
-	 	</div>
-	 </div>
-	 
-		<!-- *****************************************************************************************************************
-	 FOOTER
-	 ***************************************************************************************************************** -->
-	 <div id="footerwrap">
-	 	<div class="container">
-		 	<div class="row">
-		 		<div class="col-lg-4">
-		 			<h4>Species Information</h4>
-		 			<div class="hline-w"></div>
-		 			<p>
-		 			  The species in this app are a representative, but not exhaustive, list of species growing at the University of Colorado’s Mountain Research Station and Niwot Ridge. For more information regarding the species or their attributes, please contact Dr. Jane Smith (jane.g.smith@colorado.edu).
-		 			</p>
-		 		</div>
-		 		<div class="col-lg-4">
-		 			<h4>Support</h4>
-		 			<div class="hline-w"></div>
-		 			<p>
-		 			  Provided by the National Science Foundation through a Long Term Research in Environmental Biology grant to DF Doak and WF Morris and the Long Term Ecological Research program at Niwot Ridge.
-		 			</p>
-		 		</div>
-		 		<div class="col-lg-4">
-		 			<h4>Our Address</h4>
-		 			<div class="hline-w"></div>
-		 			<p>
-		 			  University of Colorado Boulder,<br/>
-		 			  Regent Administrative Center,<br/>
-		 			  2055 Regent Drive, Rm. 101,<br/>
-		 			  Boulder, CO 80309-0020,<br/>
-		 			</p>
-		 		</div>
-		 	</div>
 	 	</div>
 	 </div>
 	 
