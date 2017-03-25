@@ -1,25 +1,3 @@
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-*/
-
 (function() {
 
   document.body.style.backgroundColor = "#384452";
@@ -38,7 +16,6 @@ window.onclick = function(event) {
 }());
 
 setInterval(function (){
-  //var display = document.getElementById('display');
 
   var display_species2 = document.getElementById("display_species");
   var display_common_name2 = document.getElementById("display_common_name");
@@ -97,64 +74,208 @@ setInterval(function (){
   if(display_species2.textContent === display_species.innerHTML){}
   else
   {
+
+    /* ALL */
     display_species2.textContent = display_species.innerHTML;
     display_common_name2.textContent = display_common_name.innerHTML;
     display_family_name2.textContent = display_family_name.innerHTML;
     display_synonyms2.textContent = display_synonyms.innerHTML;
+    display_notes2.textContent = display_notes.innerHTML;
+    display_photo_credit2.textContent = display_photo_credit.innerHTML;
     display_growth_form2.textContent = display_growth_form.innerHTML;
+    display_leaf_type2.textContent = display_leaf_type.innerHTML;
     display_flower_color2.textContent = display_flower_color.innerHTML;
     display_flower_shape2.textContent = display_flower_shape.innerHTML;
     display_habitat2.textContent = display_habitat.innerHTML;
     display_leaf_arrangement2.textContent = display_leaf_arrangement.innerHTML;
     display_leaf_shape_filter2.textContent = display_leaf_shape_filter.innerHTML;
     display_petal_number2.textContent = display_petal_number.innerHTML;
-    display_notes2.textContent = display_notes.innerHTML;
-    display_photo_credit2.textContent = display_photo_credit.innerHTML;
-    display_inflorescence2 = display_inflorescence.innerHTML;
-    display_leaf_blade2 = display_leaf_blade.innerHTML;
-    display_spike_color2 = display_spike_color.innerHTML;
-    display_stem_cross_section2 = display_stem_cross_section.innerHTML;
-    display_awns2 = display_awns.innerHTML;
-    display_florets_per_spikelet2 = display_florets_per_spikelet.innerHTML;
-    display_cone2 = display_cone.innerHTML;
-    display_leaf_margin2 = display_leaf_margin.innerHTML;
-    display_leaf_shape2 = display_leaf_shape.innerHTML;
-    display_leaf_type2 = display_leaf_type.innerHTML;
-    display_needle_apex2 = display_needle_apex.innerHTML;
-    display_needle_arrangement2 = display_needle_arrangement.innerHTML;
-    display_needle_per_fascile2 = display_needle_per_fascile.innerHTML;
+    display_inflorescence2.textContent = display_inflorescence.innerHTML;
+    display_leaf_blade2.textContent = display_leaf_blade.innerHTML;
+    display_spike_color2.textContent = display_spike_color.innerHTML;
+    display_stem_cross_section2.textContent = display_stem_cross_section.innerHTML;
+    display_awns2.textContent = display_awns.innerHTML;
+    display_florets_per_spikelet2.textContent = display_florets_per_spikelet.innerHTML;
+    display_cone2.textContent = display_cone.innerHTML;
+    display_leaf_margin2.textContent = display_leaf_margin.innerHTML;
+    display_leaf_shape2.textContent = display_leaf_shape.innerHTML;
+    display_leaf_type2.textContent = display_leaf_type.innerHTML;
+    display_needle_apex2.textContent = display_needle_apex.innerHTML;
+    display_needle_arrangement2.textContent = display_needle_arrangement.innerHTML;
+    display_needle_per_fascile2.textContent = display_needle_per_fascile.innerHTML;
+
+    if (display_growth_form2.textContent == 'forb') {
+
+      /* Forbs Show */
+      document.getElementById('flower_color_div').style.display='block';
+      document.getElementById('flower_shape_div').style.display='block';
+      document.getElementById('leaf_arrangement_div').style.display='block';
+      document.getElementById('leaf_shape_filter_div').style.display='block';
+      document.getElementById('petal_number_div').style.display='block';
+      document.getElementById('habitat_div').style.display='block';
+
+      /* Forbs No Show*/
+      document.getElementById('inflorescence_div').style.display='none';
+      document.getElementById('leaf_blade_div').style.display='none';
+      document.getElementById('spike_color_div').style.display='none';
+      document.getElementById('stem_cross_section_div').style.display='none';
+      document.getElementById('awns_div').style.display='none';
+      document.getElementById('florets_per_spikelet_div').style.display='none';
+      document.getElementById('cone_div').style.display='none';
+      document.getElementById('leaf_margin_div').style.display='none';
+      document.getElementById('leaf_shape_div').style.display='none';
+      document.getElementById('leaf_type_div').style.display='none';
+      document.getElementById('needle_apex_div').style.display='none';
+      document.getElementById('needle_arrangement_div').style.display='none';
+      document.getElementById('needle_per_fascile_div').style.display='none';
+
+      display_leaf_type2.textContent = '';
+
+    };
+
+    if (display_family_name2.textContent == 'Cyperaceae (Sedges)') {
+
+      /* Graminoids (Cyperaceae) Show */
+      document.getElementById('inflorescence_div').style.display='block';
+      document.getElementById('leaf_blade_div').style.display='block';
+      document.getElementById('spike_color_div').style.display='block';
+      document.getElementById('stem_cross_section_div').style.display='block';
+      document.getElementById('habitat_div').style.display='block';
+
+      /* Graminoids (Cyperaceae) No Show*/
+      document.getElementById('flower_color_div').style.display='none';
+      document.getElementById('flower_shape_div').style.display='none';
+      document.getElementById('leaf_arrangement_div').style.display='none';
+      document.getElementById('leaf_shape_filter_div').style.display='none';
+      document.getElementById('petal_number_div').style.display='none';
+      document.getElementById('awns_div').style.display='none';
+      document.getElementById('florets_per_spikelet_div').style.display='none';
+      document.getElementById('cone_div').style.display='none';
+      document.getElementById('leaf_margin_div').style.display='none';
+      document.getElementById('leaf_shape_div').style.display='none';
+      document.getElementById('leaf_type_div').style.display='none';
+      document.getElementById('needle_apex_div').style.display='none';
+      document.getElementById('needle_arrangement_div').style.display='none';
+      document.getElementById('needle_per_fascile_div').style.display='none';
+
+      display_leaf_type2.textContent = '';
+
+    };
+
+    if (display_family_name2.textContent == 'Juncaceae (Rushes)') {
+
+      /* Graminoids (Juncaceae) Show */
+      document.getElementById('leaf_blade_div').style.display='block';
+      document.getElementById('stem_cross_section_div').style.display='block';
+      document.getElementById('habitat_div').style.display='block';
+
+      /* Graminoids (Juncaceae) No Show */
+      document.getElementById('spike_color_div').style.display='none';
+      document.getElementById('inflorescence_div').style.display='none';
+      document.getElementById('flower_color_div').style.display='none';
+      document.getElementById('flower_shape_div').style.display='none';
+      document.getElementById('leaf_arrangement_div').style.display='none';
+      document.getElementById('leaf_shape_filter_div').style.display='none';
+      document.getElementById('petal_number_div').style.display='none';
+      document.getElementById('awns_div').style.display='none';
+      document.getElementById('florets_per_spikelet_div').style.display='none';
+      document.getElementById('cone_div').style.display='none';
+      document.getElementById('leaf_margin_div').style.display='none';
+      document.getElementById('leaf_shape_div').style.display='none';
+      document.getElementById('leaf_type_div').style.display='none';
+      document.getElementById('needle_apex_div').style.display='none';
+      document.getElementById('needle_arrangement_div').style.display='none';
+      document.getElementById('needle_per_fascile_div').style.display='none';
+
+      display_leaf_type2.textContent = '';
+
+    };
+
+    if (display_family_name2.textContent == 'Poaceae (grasses)') {
+
+      /* Graminoids (Poaceae) Show */
+      document.getElementById('awns_div').style.display='block';
+      document.getElementById('florets_per_spikelet_div').style.display='block';
+      document.getElementById('inflorescence_div').style.display='block';
+      document.getElementById('leaf_blade_div').style.display='block';
+      document.getElementById('stem_cross_section_div').style.display='block';
+      document.getElementById('habitat_div').style.display='block';
+
+      /* Graminoids (Poaceae) No Show */
+      document.getElementById('spike_color_div').style.display='none';
+      document.getElementById('flower_color_div').style.display='none';
+      document.getElementById('flower_shape_div').style.display='none';
+      document.getElementById('leaf_arrangement_div').style.display='none';
+      document.getElementById('leaf_shape_filter_div').style.display='none';
+      document.getElementById('petal_number_div').style.display='none';
+      document.getElementById('cone_div').style.display='none';
+      document.getElementById('leaf_margin_div').style.display='none';
+      document.getElementById('leaf_shape_div').style.display='none';
+      document.getElementById('leaf_type_div').style.display='none';
+      document.getElementById('needle_apex_div').style.display='none';
+      document.getElementById('needle_arrangement_div').style.display='none';
+      document.getElementById('needle_per_fascile_div').style.display='none';
+
+      display_leaf_type2.textContent = '';
+
+    };
+
+    if (display_leaf_type2.textContent == 'deciduous') {
+
+      /* Woodys (Deciduous) Show */
+      document.getElementById('cone_div').style.display='block';
+      document.getElementById('leaf_arrangement_div').style.display='block';
+      document.getElementById('leaf_margin_div').style.display='block';
+      document.getElementById('leaf_shape_div').style.display='block';
+      document.getElementById('leaf_type_div').style.display='block';      
+
+      /* Woodys (Deciduous) No Show */
+      document.getElementById('spike_color_div').style.display='none';
+      document.getElementById('flower_color_div').style.display='none';
+      document.getElementById('flower_shape_div').style.display='none';
+      document.getElementById('awns_div').style.display='none';
+      document.getElementById('florets_per_spikelet_div').style.display='none';
+      document.getElementById('inflorescence_div').style.display='none';
+      document.getElementById('leaf_blade_div').style.display='none';
+      document.getElementById('stem_cross_section_div').style.display='none';
+      document.getElementById('habitat_div').style.display='none';
+      document.getElementById('leaf_shape_filter_div').style.display='none';
+      document.getElementById('petal_number_div').style.display='none';
+      document.getElementById('needle_apex_div').style.display='none';
+      document.getElementById('needle_arrangement_div').style.display='none';
+      document.getElementById('needle_per_fascile_div').style.display='none';
+
+    };
+
+    if (display_leaf_type2.textContent == 'needle') {
+
+      /* Woodys (Needle) Show */
+      document.getElementById('cone_div').style.display='block';
+      document.getElementById('needle_apex_div').style.display='block';
+      document.getElementById('needle_arrangement_div').style.display='block';
+      document.getElementById('needle_per_fascile_div').style.display='block';
+      document.getElementById('leaf_type_div').style.display='block';      
+
+      /* Woodys (Needle) No Show */
+      document.getElementById('spike_color_div').style.display='none';
+      document.getElementById('flower_color_div').style.display='none';
+      document.getElementById('flower_shape_div').style.display='none';
+      document.getElementById('awns_div').style.display='none';
+      document.getElementById('florets_per_spikelet_div').style.display='none';
+      document.getElementById('inflorescence_div').style.display='none';
+      document.getElementById('leaf_blade_div').style.display='none';
+      document.getElementById('stem_cross_section_div').style.display='none';
+      document.getElementById('habitat_div').style.display='none';
+      document.getElementById('leaf_shape_filter_div').style.display='none';
+      document.getElementById('petal_number_div').style.display='none';
+      document.getElementById('leaf_arrangement_div').style.display='none';
+      document.getElementById('leaf_margin_div').style.display='none';
+      document.getElementById('leaf_shape_div').style.display='none';
+
+    };
+
   }
 
-/*
-  var wantedOrder = firebase.database().ref('orders').equalTo("My Input Text");
-  
-  var forbs_query = firebase.database().ref("speciesid/field_guide/forbs").orderByKey();
-
-  forbs_query.once("value")
-    .then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-
-        var speciesName = childSnapshot.val().species_name;
-        var commonName = childSnapshot.val().common_name;
-
-        //console.log(species_name);
-
-        var h6 = document.createElement('h6');
-        var text = document.createTextNode(speciesName);
-        h6.appendChild(text);
-        document.body.appendChild(h6);
-
-
-        var h5 = document.createElement('h5');
-        var text2 = document.createTextNode(commonName);
-        h5.appendChild(text2);
-        document.body.appendChild(h5);
-
-    });
-
-  });
-  */
-
-  },50);
+},50);
 
 

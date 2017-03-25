@@ -140,6 +140,32 @@ window.onclick = function(event) {
 
 */
 
+  var display_species = parent.document.getElementById("display_species");
+  var display_common_name = parent.document.getElementById("display_common_name");
+  var display_family_name = parent.document.getElementById("display_family_name");
+  var display_synonyms = parent.document.getElementById("display_synonyms");
+  var display_growth_form = parent.document.getElementById("display_growth_form");
+  var display_flower_color = parent.document.getElementById("display_flower_color");
+  var display_flower_shape = parent.document.getElementById("display_flower_shape");
+  var display_habitat = parent.document.getElementById("display_habitat");
+  var display_leaf_arrangement = parent.document.getElementById("display_leaf_arrangement");
+  var display_leaf_shape_filter = parent.document.getElementById("display_leaf_shape_filter");
+  var display_petal_number = parent.document.getElementById("display_petal_number");
+  var display_notes = parent.document.getElementById("display_notes");
+  var display_photo_credit = parent.document.getElementById("display_photo_credit");
+  var display_inflorescence = parent.document.getElementById("display_inflorescence");
+  var display_leaf_blade = parent.document.getElementById("display_leaf_blade");
+  var display_spike_color = parent.document.getElementById("display_spike_color");
+  var display_stem_cross_section = parent.document.getElementById("display_stem_cross_section");
+  var display_awns = parent.document.getElementById("display_awns");
+  var display_florets_per_spikelet = parent.document.getElementById("display_florets_per_spikelet");
+  var display_cone = parent.document.getElementById("display_cone");
+  var display_leaf_margin = parent.document.getElementById("display_leaf_margin");
+  var display_leaf_shape = parent.document.getElementById("display_leaf_shape");
+  var display_leaf_type = parent.document.getElementById("display_leaf_type");
+  var display_needle_apex = parent.document.getElementById("display_needle_apex");
+  var display_needle_arrangement = parent.document.getElementById("display_needle_arrangement");
+  var display_needle_per_fascile = parent.document.getElementById("display_needle_per_fascile");
 
   var forbs_query = firebase.database().ref("speciesid/field_guide/forbs").orderByKey();
   forbs_query.once("value")
@@ -167,20 +193,6 @@ window.onclick = function(event) {
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_flower_color = parent.document.getElementById("display_flower_color");
-          var display_flower_shape = parent.document.getElementById("display_flower_shape");
-          var display_habitat = parent.document.getElementById("display_habitat");
-          var display_leaf_arrangement = parent.document.getElementById("display_leaf_arrangement");
-          var display_leaf_shape_filter = parent.document.getElementById("display_leaf_shape_filter");
-          var display_petal_number = parent.document.getElementById("display_petal_number");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
@@ -225,29 +237,12 @@ window.onclick = function(event) {
         var stemCrossSectionName = childSnapshot.val().stem_cross_section;
         var habitatName = childSnapshot.val().habitat;
 
-        //console.log(species_name);
-
         var h6 = document.createElement('h6');
         var text = document.createTextNode(speciesName);
         h6.appendChild(text);
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          //var display_species = parent.document.getElementById("display_species");
-          //display_species.textContent = speciesName;
-
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_inflorescence = parent.document.getElementById("display_inflorescence");
-          var display_leaf_blade = parent.document.getElementById("display_leaf_blade");
-          var display_habitat = parent.document.getElementById("display_habitat");
-          var display_spike_color = parent.document.getElementById("display_spike_color");
-          var display_stem_cross_section = parent.document.getElementById("display_stem_cross_section");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
@@ -290,27 +285,12 @@ window.onclick = function(event) {
         var stemCrossSectionName = childSnapshot.val().stem_cross_section;
         var habitatName = childSnapshot.val().habitat;
 
-        //console.log(species_name);
-
         var h6 = document.createElement('h6');
         var text = document.createTextNode(speciesName);
         h6.appendChild(text);
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          //var display_species = parent.document.getElementById("display_species");
-          //display_species.textContent = speciesName;
-
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_leaf_blade = parent.document.getElementById("display_leaf_blade");
-          var display_habitat = parent.document.getElementById("display_habitat");
-          var display_stem_cross_section = parent.document.getElementById("display_stem_cross_section");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
@@ -354,30 +334,12 @@ window.onclick = function(event) {
         var stemCrossSectionName = childSnapshot.val().stem_cross_section;
         var habitatName = childSnapshot.val().habitat;
 
-        //console.log(species_name);
-
         var h6 = document.createElement('h6');
         var text = document.createTextNode(speciesName);
         h6.appendChild(text);
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          //var display_species = parent.document.getElementById("display_species");
-          //display_species.textContent = speciesName;
-
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_awns = parent.document.getElementById("display_awns");
-          var display_florets_per_spikelet = parent.document.getElementById("display_florets_per_spikelet");
-          var display_inflorescence = parent.document.getElementById("display_inflorescence");
-          var display_habitat = parent.document.getElementById("display_habitat");
-          var display_leaf_blade = parent.document.getElementById("display_leaf_blade");
-          var display_stem_cross_section = parent.document.getElementById("display_stem_cross_section");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
@@ -423,29 +385,12 @@ window.onclick = function(event) {
         var leafShapeName = childSnapshot.val().leaf_shape;
         var leafTypeName = childSnapshot.val().leaf_type;
 
-        //console.log(species_name);
-
         var h6 = document.createElement('h6');
         var text = document.createTextNode(speciesName);
         h6.appendChild(text);
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          //var display_species = parent.document.getElementById("display_species");
-          //display_species.textContent = speciesName;
-
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_cone = parent.document.getElementById("display_cone");
-          var display_leaf_margin = parent.document.getElementById("display_leaf_margin");
-          var display_leaf_shape = parent.document.getElementById("display_leaf_shape");
-          var display_leaf_type = parent.document.getElementById("display_leaf_type");
-          var display_leaf_arrangement = parent.document.getElementById("display_leaf_arrangement");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
@@ -490,29 +435,12 @@ window.onclick = function(event) {
         var needlePerFascileName = childSnapshot.val().needle_per_fascile;
         var leafTypeName = childSnapshot.val().leaf_type;
 
-        //console.log(species_name);
-
         var h6 = document.createElement('h6');
         var text = document.createTextNode(speciesName);
         h6.appendChild(text);
         document.body.appendChild(h6);
 
         h6.onclick = function () {
-          //var display_species = parent.document.getElementById("display_species");
-          //display_species.textContent = speciesName;
-
-          var display_species = parent.document.getElementById("display_species");
-          var display_common_name = parent.document.getElementById("display_common_name");
-          var display_family_name = parent.document.getElementById("display_family_name");
-          var display_synonyms = parent.document.getElementById("display_synonyms");
-          var display_growth_form = parent.document.getElementById("display_growth_form");
-          var display_cone = parent.document.getElementById("display_cone");
-          var display_needle_apex = parent.document.getElementById("display_leaf_margin");
-          var display_needle_arrangement = parent.document.getElementById("display_leaf_shape");
-          var display_leaf_type = parent.document.getElementById("display_leaf_type");
-          var display_needle_per_fascile = parent.document.getElementById("display_leaf_arrangement");
-          var display_notes = parent.document.getElementById("display_notes");
-          var display_photo_credit = parent.document.getElementById("display_photo_credit");
 
           display_species.textContent = speciesName;
           display_common_name.textContent = commonName;
