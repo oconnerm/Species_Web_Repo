@@ -69,23 +69,47 @@
   <!-- *****************************************************************************************************************
    BODY
    ***************************************************************************************************************** -->
-	 <div id="twrap">
-	 	<div class="container centered">
-	 		<div class="row">
-	 			<div class="container">
+   <div id="twrap">
+    <div class="container centered">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
 
-          <div class="imgcontainer">
-            <img id="userAvatar" src="assets/img/profile_placeholder.png" alt="Avatar" class="avatar hide">
-          </div>
+          <h1>Sign In/Up</h1>
 
-          <h2 id="user-name" class="hide"></h2>
+          <div class="home_section">
 
-          <input id="txtEmail" type="email" style="height:32px;width:150px"placeholder="Email">
-					<input id="txtPassword" type="password" style="height:32px;width:150px"placeholder="Password">
-					<button id="btnLogin" class="btn btn-action" style="height:32px;width:90px">Log in</button>
-					<button id="btnSignUp" class="btn btn-secondary" style="height:32px;width:90px">Sign up</button>
-					<button id="btnLogout" class="btn btn-action hide" style="height:32px;width:90px">Log out</button>
+          <h2 id="user-name" style="display:none;"></h2>
+          <h3 id="reset_assword_txt" style="display:none;"><a href="">Reset Password</a></h3>
+          <h3 id="change_email_txt" style="display:none;"><a href="">Change Email</a></h3>
+          <h3 id="verify_researcher_txt" style="display:none;"><a href="">Request Researcher Verification</a></h3>
+          <button id="btnLogout" class="btn btn-action" style="height:32px;width:90px;display:none;">Log out</button>
+
+            <div align="left" style="float:left;width:50%;">
+              <h2 id="have_account_txt">Have an ccount?</h2>
+              <br></br>
+              <input id="txtEmail_login" type="email" style="height:32px;width:200px"placeholder="Email">
+              <br></br>
+              <input id="txtPassword_login" type="password" style="height:32px;width:200px"placeholder="Password">
+              <br></br>
+              <button id="btnLogin" class="btn btn-action" style="height:32px;width:90px">Log in</button>
+              <br></br>
+              <h3 id="forget_password_txt"><a href="">Forgot password?</a></h3>
+            </div>
+            <div align="left" style="float:right;width:50%">
+              <h2 id="dont_have_account_txt">Don't have an ccount?</h2>
+              <br></br>
+              <input id="txtUsername_create" type="email" style="height:32px;width:200px"placeholder="Username">
+              <br></br>
+              <input id="txtEmail_create" type="email" style="height:32px;width:200px"placeholder="Email">
+              <br></br>
+              <input id="txtPassword_create" type="password" style="height:32px;width:200px"placeholder="Password">
+              <br></br>
+              <input id="txtPassword_create_2" type="password" style="height:32px;width:200px"placeholder="Retype">
+              <br></br>
+              <button id="btnSignUp" class="btn btn-secondary" style="height:32px;width:90px">Sign up</button>
+            </div>
 	
+          </div>
 	 			</div>
 	 		</div>
 	 	</div>
