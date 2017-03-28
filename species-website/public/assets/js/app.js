@@ -105,54 +105,70 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
 	if(firebaseUser){
 
-    // Variables for user name and picture
-    const user = txtUsername_create.value;
-    const displayName = firebaseUser.email;
-    const uid = firebaseUser.uid; // get user uid
+    if (firebaseUser.emailVerified) {
+      console.log('Email is verified');
 
-    // Write to database when user signs up
-    var ref = firebase.database().ref("speciesid")
-    function writeUserData(uid) {
-      ref.child("accounts").child(uid).update({
-          "researcher": false,
-          "username": user
-      });
+      // Variables for user name and picture
+      const user = txtUsername_create.value;
+      const display_Name = firebaseUser.email;
+      const uid = firebaseUser.uid; // get user uid
+
+      // Write to database when user signs up
+      var ref = firebase.database().ref("speciesid")
+      function writeUserData(uid) {
+        ref.child("accounts").child(uid).update({
+            "researcher": false,
+            "username": user
+        });
+      }
+      writeUserData(uid);
+
+      // Set user name
+      userName.textContent = "Welcome " + display_Name + "!";
+
+      console.log(firebaseUser);
+
+      userName.classList.remove('hide');
+      reset_assword_txt.classList.remove('hide');
+      change_email_txt.classList.remove('hide');
+      verify_researcher_txt.classList.remove('hide');
+      btnLogout.classList.remove('hide');
+
+      have_account_txt.classList.add('hide');
+      txtEmail_login.classList.add('hide');
+      txtPassword_login.classList.add('hide');
+      btnLogin.classList.add('hide');
+      forget_password_txt.classList.add('hide');
+
+      dont_have_account_txt.classList.add('hide');
+      txtUsername_create.classList.add('hide');
+      txtEmail_create.classList.add('hide');
+      txtPassword_create.classList.add('hide');
+      txtPassword_create_2.classList.add('hide');
+      btnSignUp.classList.add('hide');
+
+    } else {
+      // Send email verification
+      firebaseUser.sendEmailVerification(); 
+
+      txtUsername_create.value = "Username";
+      txtEmail_create.value = "Email";
+      txtPassword_create.value = "Password";
+      txtPassword_create_2.value = "Retype";
+
+      alert("Please check your email for verification");
+
     }
-    writeUserData(uid);
-
-    // Set user name
-    userName.textContent = "Welcome " + displayName + "!";
-
-	  console.log(firebaseUser);
-
-    userName.style.display='block';
-	  reset_assword_txt.style.display='block';
-    change_email_txt.style.display='block';
-    verify_researcher_txt.style.display='block';
-    btnLogout.style.display='block';
-
-    have_account_txt.classList.add('hide');
-	  txtEmail_login.classList.add('hide');
-	  txtPassword_login.classList.add('hide');
-    btnLogin.classList.add('hide');
-    forget_password_txt.classList.add('hide');
-
-    dont_have_account_txt.classList.add('hide');
-    txtUsername_create.classList.add('hide');
-    txtEmail_create.classList.add('hide');
-    txtPassword_create.classList.add('hide');
-    txtPassword_create_2.classList.add('hide');
-    btnSignUp.classList.add('hide');
 
 	} else {
 
 	  console.log('not logged in');
 
-    userName.style.display='none';
-    reset_assword_txt.style.display='none';
-    change_email_txt.style.display='none';
-    verify_researcher_txt.style.display='none';
-	  btnLogout.classList.style.display='none';
+    userName.classList.add('hide');
+    reset_assword_txt.classList.add('hide');
+    change_email_txt.classList.add('hide');
+    verify_researcher_txt.classList.add('hide');
+	  btnLogout.classList.add('hide');
 
     have_account_txt.classList.remove('hide');
     txtEmail_login.classList.remove('hide');
