@@ -73,7 +73,27 @@
 	 	<div class="container centered">
 	 		<div class="row">
 	 			<div class="col-lg-8 col-lg-offset-2">
-            <h1>Observations</h1>
+
+          <h1>Observations</h1>
+            <div class="home_section">
+            
+              <div id="map" style="width:400px;height:400px;background:yellow"></div>
+
+              <script>
+              function myMap() {
+              var mapOptions = {
+                  center: new google.maps.LatLng(40.0605419, -105.5816675),
+                  zoom: 10,
+                  mapTypeId: google.maps.MapTypeId.HYBRID
+              }
+              var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+              }
+              </script>
+
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks&callback=myMap"></script>
+
+            </div>  
+
 	 			</div>
 	 		</div>
 	 	</div>

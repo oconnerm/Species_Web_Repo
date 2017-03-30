@@ -78,11 +78,19 @@
 
           <div class="home_section">
 
-          <h2 id="user-name" class="hide"></h2>
-          <h3 id="reset_assword_txt" class="hide"><a href="">Reset Password</a></h3>
-          <h3 id="change_email_txt" class="hide"><a href="">Change Email</a></h3>
-          <h3 id="verify_researcher_txt" class="hide"><a href="">Request Researcher Verification</a></h3>
-          <button id="btnLogout" class="btn btn-action hide" style="height:32px;width:90px;">Log out</button>
+          <h2 id="welcome_txt" class="hide">Welcome to Luminous ID!</h2>
+          <h4 id="user-name" class="hide"></h4>
+          <div align="left" style="float:left;width:50%;">
+            <button id="reset_password_txt" class="btn-user-account hide" style="height:35px;"><b>Reset Password</b></button>
+            <button id="verify_researcher_txt" class="btn-user-account hide" style="height:75px;"><b>Request Researcher Verification</b></button>
+            <button id="btnLogout" class="btn btn-action hide" style="height:32px;width:90px;">Log out</button>
+          </div>
+          <div align="left" style="float:right;width:50%">
+          </div>
+
+          <h2 id="forgot_password_text" class="hide">Please type in your password</h2>
+          <input id="forgot_password_input" type="email" style="height:32px;width:200px" class="hide" placeholder="Email">
+          <button id="forgot_password_submit" class="btn btn-action hide" style="height:32px;width:90px;">Submit</button>
 
             <div align="left" style="float:left;width:50%;">
               <h2 id="have_account_txt">Have an ccount?</h2>
@@ -93,7 +101,7 @@
               <br></br>
               <button id="btnLogin" class="btn btn-action" style="height:32px;width:90px">Log in</button>
               <br></br>
-              <h3 id="forget_password_txt"><a href="">Forgot password?</a></h3>
+              <button id="forgot_password_btn" class="btn-user-account"><b>Forgot password?</b></button>
             </div>
             <div align="left" style="float:right;width:50%">
               <h2 id="dont_have_account_txt">Don't have an ccount?</h2>
@@ -113,7 +121,7 @@
 	 			</div>
 	 		</div>
 	 	</div>
-	 </div>
+	</div>
 
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
   <script>

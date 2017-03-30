@@ -1,11 +1,15 @@
 (function() {
 
   // Get elements
+  const forgot_password_text = document.getElementById('forgot_password_text');
+  const forgot_password_input = document.getElementById('forgot_password_input');
+  const forgot_password_submit = document.getElementById('forgot_password_submit');
+
   const have_account_txt = document.getElementById('have_account_txt');
   const txtEmail_login = document.getElementById('txtEmail_login');
   const txtPassword_login = document.getElementById('txtPassword_login');
   const btnLogin = document.getElementById('btnLogin');
-  const forget_password_txt = document.getElementById('forget_password_txt');
+  const forgot_password_btn = document.getElementById('forgot_password_btn');
 
   const dont_have_account_txt = document.getElementById('dont_have_account_txt');
   const txtUsername_create = document.getElementById('txtUsername_create');
@@ -15,8 +19,8 @@
   const btnSignUp = document.getElementById('btnSignUp');
 
   const userName = document.getElementById('user-name');
-  const reset_assword_txt = document.getElementById('reset_assword_txt');
-  const change_email_txt = document.getElementById('change_email_txt');
+  const welcome_txt = document.getElementById('welcome_txt');
+  const reset_password_txt = document.getElementById('reset_password_txt');
   const verify_researcher_txt = document.getElementById('verify_researcher_txt');
   const btnLogout = document.getElementById('btnLogout');
 
@@ -67,37 +71,63 @@
 
   });
 
+    // Add reset password
+  reset_password_txt.addEventListener('click', e => {
+
+    const email = userName.textContent;
+    const promise = auth.sendPasswordResetEmail(email);
+
+    alert("Please check your email");
+
+  });
+
   // Add reset password
-  forget_password_txt.addEventListener('click', e => {
+  forgot_password_submit.addEventListener('click', e => {
 
-    function handleResetPassword(auth, actionCode) {
-      var accountEmail;
-      // Verify the password reset code is valid.
-      auth.verifyPasswordResetCode(actionCode).then(function(email) {
-        var accountEmail = email;
+    const email = forgot_password_input.value;
+    const promise = auth.sendPasswordResetEmail(email);
 
-        // TODO: Show the reset screen with the user's email and ask the user for
-        // the new password.
+    // TODO: Catch error when typing if email
+    //promise.catch(e => alert(e.message));
 
-        // Save the new password.
-        auth.confirmPasswordReset(actionCode, newPassword).then(function(resp) {
-          // Password reset has been confirmed and new password updated.
+    alert("Please check your email");
 
-          // TODO: Display a link back to the app, or sign-in the user directly
-          // if the page belongs to the same domain as the app:
-          auth.signInWithEmailAndPassword(accountEmail, newPassword);
+    /*
+    promise.catch(e => {
+      if (e.message) {
+        alert(e.message)
+      } else {
+        alert("Please check your email");
+      }
+    });
+    */
 
-        }).catch(function(error) {
-          // Error occurred during confirmation. The code might have expired or the
-          // password is too weak.
-        });
-      }).catch(function(error) {
-        // Invalid or expired action code. Ask user to try to reset the password
-        // again.
-      });
-    }
+  });
 
-    //handleResetPassword(auth, actionCode);
+    // Add reset password
+  forgot_password_btn.addEventListener('click', e => {
+
+    forgot_password_text.classList.remove('hide');
+    forgot_password_input.classList.remove('hide');
+    forgot_password_submit.classList.remove('hide');
+
+    userName.classList.add('hide');
+    reset_password_txt.classList.add('hide');
+    verify_researcher_txt.classList.add('hide');
+    btnLogout.classList.add('hide');
+
+    have_account_txt.classList.add('hide');
+    txtEmail_login.classList.add('hide');
+    txtPassword_login.classList.add('hide');
+    btnLogin.classList.add('hide');
+    forgot_password_btn.classList.add('hide');
+
+    dont_have_account_txt.classList.add('hide');
+    txtUsername_create.classList.add('hide');
+    txtEmail_create.classList.add('hide');
+    txtPassword_create.classList.add('hide');
+    txtPassword_create_2.classList.add('hide');
+    btnSignUp.classList.add('hide');
 
   });
 
@@ -124,13 +154,13 @@
       writeUserData(uid);
 
       // Set user name
-      userName.textContent = "Welcome " + display_Name + "!";
+      userName.textContent = display_Name;
 
       console.log(firebaseUser);
 
       userName.classList.remove('hide');
-      reset_assword_txt.classList.remove('hide');
-      change_email_txt.classList.remove('hide');
+      welcome_txt.classList.remove('hide');
+      reset_password_txt.classList.remove('hide');
       verify_researcher_txt.classList.remove('hide');
       btnLogout.classList.remove('hide');
 
@@ -138,7 +168,7 @@
       txtEmail_login.classList.add('hide');
       txtPassword_login.classList.add('hide');
       btnLogin.classList.add('hide');
-      forget_password_txt.classList.add('hide');
+      forgot_password_btn.classList.add('hide');
 
       dont_have_account_txt.classList.add('hide');
       txtUsername_create.classList.add('hide');
@@ -165,8 +195,7 @@
 	  console.log('not logged in');
 
     userName.classList.add('hide');
-    reset_assword_txt.classList.add('hide');
-    change_email_txt.classList.add('hide');
+    reset_password_txt.classList.add('hide');
     verify_researcher_txt.classList.add('hide');
 	  btnLogout.classList.add('hide');
 
@@ -174,7 +203,7 @@
     txtEmail_login.classList.remove('hide');
     txtPassword_login.classList.remove('hide');
     btnLogin.classList.remove('hide');
-    forget_password_txt.classList.remove('hide');
+    forgot_password_btn.classList.remove('hide');
 
     dont_have_account_txt.classList.remove('hide');
     txtUsername_create.classList.remove('hide');
