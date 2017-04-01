@@ -70,57 +70,67 @@
    BODY
    ***************************************************************************************************************** -->
    <div id="twrap">
-    <div class="container centered">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
 
-          <h1>Sign In/Up</h1>
+      <h1 style="text-shadow: 2px 2px #000000">Sign In/Up</h1>
+      <br></br>
 
-          <div class="home_section">
+      <div class="home_section">
 
-          <h2 id="welcome_txt" class="hide">Welcome to Luminous ID!</h2>
-          <h4 id="user-name" class="hide"></h4>
-          <div align="left" style="float:left;width:50%;">
-            <button id="reset_password_txt" class="btn-user-account hide" style="height:35px;"><b>Reset Password</b></button>
-            <button id="verify_researcher_txt" class="btn-user-account hide" style="height:75px;"><b>Request Researcher Verification</b></button>
-            <button id="btnLogout" class="btn btn-action hide" style="height:32px;width:90px;">Log out</button>
-          </div>
-          <div align="left" style="float:right;width:50%">
-          </div>
+      <!-- In Account -->
 
-          <h2 id="forgot_password_text" class="hide">Please type in your password</h2>
-          <input id="forgot_password_input" type="email" style="height:32px;width:200px" class="hide" placeholder="Email">
-          <button id="forgot_password_submit" class="btn btn-action hide" style="height:32px;width:90px;">Submit</button>
+      <h2 id="welcome_txt" class="hide" style="color:#dddddd;">Welcome to Luminous ID!</h2>
+      <h4 id="user-name" class="hide" style="color:#dddddd;"></h4>
+      <div align="left" style="float:left;width:50%;">
+        <button id="reset_password_txt" class="btn-user-account hide" style="height:35px;"><b>Reset Password</b></button>
+        <button id="verify_researcher_txt" class="btn-user-account hide" style="height:75px;"><b>Request Researcher Verification</b></button>
+        <button id="btnLogout" class="btn btn-action hide" style="height:32px;width:90px;">Log out</button>
+      </div>
+      <div align="left" style="float:right;width:50%">
+        <h4 id="recent_observations" class="hide" style="text-align:center;color:#dddddd;">Recent Observations</h4>
+        <h5 id="no_observations" class="hide" style="text-align:center;">None! Get out there and take some observations!</h5>
+      </div>
 
-            <div align="left" style="float:left;width:50%;">
-              <h2 id="have_account_txt">Have an ccount?</h2>
-              <br></br>
-              <input id="txtEmail_login" type="email" style="height:32px;width:200px" placeholder="Email">
-              <br></br>
-              <input id="txtPassword_login" type="password" style="height:32px;width:200px" placeholder="Password">
-              <br></br>
-              <button id="btnLogin" class="btn btn-action" style="height:32px;width:90px">Log in</button>
-              <br></br>
-              <button id="forgot_password_btn" class="btn-user-account"><b>Forgot password?</b></button>
-            </div>
-            <div align="left" style="float:right;width:50%">
-              <h2 id="dont_have_account_txt">Don't have an ccount?</h2>
-              <br></br>
-              <input id="txtUsername_create" type="email" style="height:32px;width:200px" placeholder="Username">
-              <br></br>
-              <input id="txtEmail_create" type="email" style="height:32px;width:200px" placeholder="Email">
-              <br></br>
-              <input id="txtPassword_create" type="password" style="height:32px;width:200px" placeholder="Password">
-              <br></br>
-              <input id="txtPassword_create_2" type="password" style="height:32px;width:200px" placeholder="Retype">
-              <br></br>
-              <button id="btnSignUp" class="btn btn-secondary" style="height:32px;width:90px">Sign up</button>
-            </div>
-	
-          </div>
-	 			</div>
-	 		</div>
-	 	</div>
+      <!-- Reset password -->
+
+      <h2 id="reset_password_text" class="hide" style="color:#dddddd;">Would you like to reset your password?</h2>
+      <button id="reset_password_yes" class="btn btn-action hide" style="height:32px;width:90px;">Yes</button>
+      <button id="reset_password_no" class="btn btn-action hide" style="height:32px;width:90px;">No</button>
+
+      <!-- Forgot password -->
+
+      <h2 id="forgot_password_text" class="hide" style="color:#dddddd;">Please type in your email address</h2>
+      <input id="forgot_password_input" type="email" style="height:32px;width:200px" class="hide" placeholder="Email">
+      <button id="forgot_password_submit" class="btn btn-action hide" style="height:32px;width:90px;">Submit</button>
+      <button id="forgot_password_quit" class="btn btn-action hide" style="height:32px;width:90px;">Quit</button>
+
+      <!-- Outside Account -->
+
+        <div align="left" style="float:left;width:50%;">
+          <h2 id="have_account_txt" style="color:#dddddd;">Have an account?</h2>
+          <br></br>
+          <input id="txtEmail_login" type="email" style="height:32px;width:200px" placeholder="Email">
+          <br></br>
+          <input id="txtPassword_login" type="password" style="height:32px;width:200px" placeholder="Password">
+          <br></br>
+          <button id="btnLogin" class="btn btn-action" style="height:32px;width:90px">Log in</button>
+          <br></br>
+          <button id="forgot_password_btn" class="btn-user-account"><b>Forgot password?</b></button>
+        </div>
+        <div align="left" style="float:right;width:50%">
+          <h2 id="dont_have_account_txt" style="color:#dddddd;">Don't have an account?</h2>
+          <br></br>
+          <input id="txtUsername_create" type="email" style="height:32px;width:200px" placeholder="Username">
+          <br></br>
+          <input id="txtEmail_create" type="email" style="height:32px;width:200px" placeholder="Email">
+          <br></br>
+          <input id="txtPassword_create" type="password" style="height:32px;width:200px" placeholder="Password">
+          <br></br>
+          <input id="txtPassword_create_2" type="password" style="height:32px;width:200px" placeholder="Retype">
+          <br></br>
+          <button id="btnSignUp" class="btn btn-secondary" style="height:32px;width:90px">Sign up</button>
+        </div>
+      </div>
+
 	</div>
 
   <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>

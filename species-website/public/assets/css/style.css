@@ -99,10 +99,10 @@ a:focus {
 	min-height: 70px;
 	padding-top: 10px;
 	margin-bottom: 0px;
+	font-family: 'Calibri', sans-serif;
 }
 
 .navbar-brand {
-	font-family: 'Snippet', sans-serif;
 	font-weight: 900;
 }
 
@@ -298,14 +298,14 @@ a:focus {
 
 /* Testimonials Wrap */
 #twrap {
-	background: url(../img/t-back.jpg) no-repeat center top;
+	background: url(../img/t-back.jpg) no-repeat center fixed;
 	margin-top: 0px;
-	padding-top:100px;
+	padding:100px;
 	text-align:center;
 	background-attachment: relative;
-	background-position: center center;
 	min-height: 1000px;
 	width: 100%;
+    overflow: auto;
 	
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
@@ -515,9 +515,16 @@ b, strong {
 /* Home Section */
 .home_section {
     border-radius: 10px;
-    background-color:rgba(0, 0, 0, 0.75);
-    padding: 25px; 
-    min-height: 575px;
+    background-color:rgba(0, 0, 0, 0.85);
+    padding: 10px 75px; 
+    min-height: 650px;
+    width: 100%;
+}
+
+/* TODO: Make sure there's no over scrolling */
+html {
+    overflow: auto;
+    height: 100%;
 }
 
 /* Field Guide Section */

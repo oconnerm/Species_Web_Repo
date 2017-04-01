@@ -70,33 +70,36 @@
 	 BODY
 	 ***************************************************************************************************************** -->
 	 <div id="twrap">
-	 	<div class="container centered">
-	 		<div class="row">
-	 			<div class="col-lg-8 col-lg-offset-2">
 
-          <h1>Observations</h1>
-            <div class="home_section">
-            
-              <div id="map" style="width:400px;height:400px;background:yellow"></div>
+    <h1 style="text-shadow: 2px 2px #000000">Observations</h1>
+    <br></br>
+      <div class="home_section">
+          <div align="left" style="float:left;width:50%;">
+            <br></br>
+            <div id="map" style="width:400px;height:400px;background:yellow"></div>
+            <script>
+            function myMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(40.0605419, -105.5816675),
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            }
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks&callback=myMap"></script>
 
-              <script>
-              function myMap() {
-              var mapOptions = {
-                  center: new google.maps.LatLng(40.0605419, -105.5816675),
-                  zoom: 10,
-                  mapTypeId: google.maps.MapTypeId.HYBRID
-              }
-              var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-              }
-              </script>
+            <p><input type="checkbox" name="verified" value="true"> Verified</p>
+            <p><input type="checkbox" name="not_verified" value="true"> Not Verified</p>
+            <p><input type="checkbox" name="all" value="true"> All</h4>
 
-              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks&callback=myMap"></script>
+          </div>
+        <div align="right" style="float:right;width:50%;">
+          <h2 id="recent_observations" style="text-align:center;color:#dddddd;">Recent Observations</h2>
+        </div>
 
-            </div>  
+      </div>  
 
-	 			</div>
-	 		</div>
-	 	</div>
 	 </div>
 	 
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
