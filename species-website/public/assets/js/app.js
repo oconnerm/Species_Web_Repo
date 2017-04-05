@@ -1,6 +1,11 @@
 (function() {
 
   // Get elements
+  const verify_researcher_text = document.getElementById('verify_researcher_text');
+  const verify_researcher_input = document.getElementById('verify_researcher_input');
+  const verify_researcher_submit = document.getElementById('verify_researcher_submit');
+  const verify_researcher_quit = document.getElementById('verify_researcher_quit');
+
   const reset_password_text = document.getElementById('reset_password_text');
   const reset_password_yes = document.getElementById('reset_password_yes');
   const reset_password_no = document.getElementById('reset_password_no');
@@ -23,10 +28,11 @@
   const txtPassword_create_2 = document.getElementById('txtPassword_create_2');
   const btnSignUp = document.getElementById('btnSignUp');
 
-  const userName = document.getElementById('user-name');
+  const user_email = document.getElementById('user_email');
+  const user_status = document.getElementById('user_status');
   const welcome_txt = document.getElementById('welcome_txt');
   const reset_password_txt = document.getElementById('reset_password_txt');
-  const verify_researcher_txt = document.getElementById('verify_researcher_txt');
+  const verify_researcher_btn = document.getElementById('verify_researcher_btn');
   const btnLogout = document.getElementById('btnLogout');
   const recent_observations = document.getElementById('recent_observations');
   const no_observations = document.getElementById('no_observations');
@@ -57,24 +63,100 @@
   // Add signup event
   btnSignUp.addEventListener('click', e => {
 
+    //const uid = firebaseUser.uid; // get user uid
+
     // get email and pass
     const email = txtEmail_create.value;
-    //const auth = firebase.auth();
+    const user = txtUsername_create.value;
+    const pass = txtPassword_create.value;
+    const pass_2 = txtPassword_create_2.value;
 
-    function checkPasswordMatch() {
-      const pass = txtPassword_create.value;
-      const pass_2 = txtPassword_create_2.value;
-      if (pass != pass_2) {
-        // Tell user passwords don't match
-        alert("Your passwords don't match");
-      } else {
-        // Sign up
-        const promise = auth.createUserWithEmailAndPassword(email, pass);
+    if (pass != pass_2) {
+
+      alert("Your passwords don't match");
+
+    } else {
+
+      const promise = auth.cfirebaseUserreateUserWithEmailAndPassword(email, pass).then(function(response) {
+        //console.log(response.uid);
+        firebase.database().ref("speciesid/accounts").child(response.uid).set({
+            "researcher": 0.0,
+            "username": user
+        });
+
         promise.catch(e => alert(e.message));
-      }
-    }
 
-    checkPasswordMatch();
+      });
+    }
+  });
+
+  // Add reset password
+  verify_researcher_btn.addEventListener('click', e => {
+
+    verify_researcher_text.classList.remove('hide');
+    verify_researcher_input.classList.remove('hide');
+    verify_researcher_submit.classList.remove('hide');
+    verify_researcher_quit.classList.remove('hide');
+
+    welcome_txt.classList.add('hide');
+    user_email.classList.add('hide');
+    user_status.classList.add('hide');
+    reset_password_txt.classList.add('hide');
+    verify_researcher_btn.classList.add('hide');
+    btnLogout.classList.add('hide');
+    recent_observations.classList.add('hide');
+    no_observations.classList.add('hide');
+
+  });
+
+  // Add reset password
+  verify_researcher_submit.addEventListener('click', e => {
+
+    const email = verify_researcher_input.value;
+    const user_email = firebase.auth().currentUser.email;
+
+    //alert(user_email);
+
+    // TODO: Send email
+
+    // parameters: service_id, template_id, template_parameters
+    //emailjs.send("default_service","template_gZiF4gse",{name: "Ryan", notes: "Check this out!"});
+
+    emailjs.send("mailjet", "verify_researcher", {"link":"https://speciesid-ca814.firebaseapp.com/verify.html","email":email,"user_email":user_email})
+
+    //alert("Email has been sent");
+
+    verify_researcher_text.classList.add('hide');
+    verify_researcher_input.classList.add('hide');
+    verify_researcher_submit.classList.add('hide');
+    verify_researcher_quit.classList.add('hide');
+
+    welcome_txt.classList.remove('hide');
+    user_email.classList.remove('hide');
+    user_status.classList.remove('hide');
+    reset_password_txt.classList.remove('hide');
+    verify_researcher_btn.classList.remove('hide');
+    btnLogout.classList.remove('hide');
+    recent_observations.classList.remove('hide');
+    no_observations.classList.remove('hide');
+
+  });
+
+  verify_researcher_quit.addEventListener('click', e => {
+
+    verify_researcher_text.classList.add('hide');
+    verify_researcher_input.classList.add('hide');
+    verify_researcher_submit.classList.add('hide');
+    verify_researcher_quit.classList.add('hide');
+
+    welcome_txt.classList.remove('hide');
+    user_email.classList.remove('hide');
+    user_status.classList.remove('hide');
+    reset_password_txt.classList.remove('hide');
+    verify_researcher_btn.classList.remove('hide');
+    btnLogout.classList.remove('hide');
+    recent_observations.classList.remove('hide');
+    no_observations.classList.remove('hide');
 
   });
 
@@ -85,9 +167,10 @@
     reset_password_no.classList.add('hide');
 
     welcome_txt.classList.remove('hide');
-    userName.classList.remove('hide');
+    user_email.classList.remove('hide');
+    user_status.classList.remove('hide');
     reset_password_txt.classList.remove('hide');
-    verify_researcher_txt.classList.remove('hide');
+    verify_researcher_btn.classList.remove('hide');
     btnLogout.classList.remove('hide');
     recent_observations.classList.remove('hide');
     no_observations.classList.remove('hide');
@@ -96,7 +179,7 @@
 
   reset_password_yes.addEventListener('click', e => {
 
-    const email = userName.textContent;
+    const email = user_email.textContent;
     const promise = auth.sendPasswordResetEmail(email);
 
     alert("Please check your email");
@@ -106,9 +189,10 @@
     reset_password_no.classList.add('hide');
 
     welcome_txt.classList.remove('hide');
-    userName.classList.remove('hide');
+    user_email.classList.remove('hide');
+    user_status.classList.remove('hide');
     reset_password_txt.classList.remove('hide');
-    verify_researcher_txt.classList.remove('hide');
+    verify_researcher_btn.classList.remove('hide');
     btnLogout.classList.remove('hide');
     recent_observations.classList.remove('hide');
     no_observations.classList.remove('hide');
@@ -123,9 +207,10 @@
     reset_password_no.classList.remove('hide');
 
     welcome_txt.classList.add('hide');
-    userName.classList.add('hide');
+    user_email.classList.add('hide');
+    user_status.classList.add('hide');
     reset_password_txt.classList.add('hide');
-    verify_researcher_txt.classList.add('hide');
+    verify_researcher_btn.classList.add('hide');
     btnLogout.classList.add('hide');
     recent_observations.classList.add('hide');
     no_observations.classList.add('hide');
@@ -196,9 +281,10 @@
     forgot_password_quit.classList.remove('hide');
 
     welcome_txt.classList.add('hide');
-    userName.classList.add('hide');
+    user_email.classList.add('hide');
+    user_status.classList.add('hide');
     reset_password_txt.classList.add('hide');
-    verify_researcher_txt.classList.add('hide');
+    verify_researcher_btn.classList.add('hide');
     btnLogout.classList.add('hide');
     recent_observations.classList.add('hide');
     no_observations.classList.add('hide');
@@ -223,33 +309,29 @@
 	if(firebaseUser){
 
     if (firebaseUser.emailVerified) {
-      console.log('Email is verified');
+      //console.log('Email is verified');
 
-      // Variables for user name and picture
-      const user = txtUsername_create.value;
-      const display_Name = firebaseUser.email;
-      const uid = firebaseUser.uid; // get user uid
+      var user_name_query = firebase.database().ref("speciesid/accounts/").child(firebaseUser.uid);
 
-      // Write to database when user signs up
-      var ref = firebase.database().ref("speciesid")
-      function writeUserData(uid) {
-        ref.child("accounts").child(uid).update({
-            "researcher": false,
-            "username": user
-        });
-      }
-      writeUserData(uid);
+      user_name_query.once('value').then(function(snapshot) {
+        welcome_txt.textContent = "Welcome back " + snapshot.val().username + "!";
+        user_email.textContent = "Email: " + firebaseUser.email;
 
-      // Set user name
-      userName.textContent = display_Name;
+        if (snapshot.val().researcher < 3) {
+          user_status.textContent = "Account: User";
+        } else {
+          user_status.textContent = "Account: Reseacher";
+        }
 
-      console.log(firebaseUser);
+      });
+
+      //console.log(firebaseUser);
 
       welcome_txt.classList.remove('hide');
-      userName.classList.remove('hide');
-      welcome_txt.classList.remove('hide');
+      user_email.classList.remove('hide');
+      user_status.classList.remove('hide');
       reset_password_txt.classList.remove('hide');
-      verify_researcher_txt.classList.remove('hide');
+      verify_researcher_btn.classList.remove('hide');
       btnLogout.classList.remove('hide');
       recent_observations.classList.remove('hide');
       no_observations.classList.remove('hide');
@@ -271,23 +353,19 @@
       // Send email verification
       firebaseUser.sendEmailVerification(); 
 
-      txtUsername_create.value = "Username";
-      txtEmail_create.value = "Email";
-      txtPassword_create.value = "Password";
-      txtPassword_create_2.value = "Retype";
-
       alert("Please check your email for verification");
 
     }
 
 	} else {
 
-	  console.log('not logged in');
+	  //console.log('not logged in');
 
     welcome_txt.classList.add('hide');
-    userName.classList.add('hide');
+    user_email.classList.add('hide');
+    user_status.classList.add('hide');
     reset_password_txt.classList.add('hide');
-    verify_researcher_txt.classList.add('hide');
+    verify_researcher_btn.classList.add('hide');
 	  btnLogout.classList.add('hide');
     recent_observations.classList.add('hide');
     no_observations.classList.add('hide');

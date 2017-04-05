@@ -516,6 +516,7 @@ b, strong {
 .home_section {
     border-radius: 10px;
     background-color:rgba(0, 0, 0, 0.85);
+    font-family: 'Calibri', sans-serif;
     padding: 10px 75px; 
     min-height: 650px;
     width: 100%;
