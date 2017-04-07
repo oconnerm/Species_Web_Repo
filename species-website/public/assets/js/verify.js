@@ -17,50 +17,93 @@
   submit_btn.addEventListener('click', e => {
 
     // get email and pass
-    const email = email_login_text.value;
+    const email_login = email_login_text.value;
   	const pass = password_login_text.value;
 
     const verify_email = email_verify_text.value;
 
-    // TRICKY!!!!! Updating the personal users reseacher value
+    // TODO: Can't verify yourself as a reseacher DONE
 
-    // Sign in
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => alert(e.message));
+    if (email_login == verify_email) {
 
-    firebase.auth().onAuthStateChanged(firebaseUser => {
+      alert("You can't verify yourself");
 
-      if(firebaseUser){
+    } else {
 
-        var update_reseacher = firebase.database().ref("speciesid/accounts/").child(firebaseUser.uid);
+      // Sign in
+      const promise = auth.signInWithEmailAndPassword(email_login, pass);
+      promise.catch(e => alert(e.message));
 
-        update_reseacher.once('value').then(function(snapshot) {
-          var researcher_val = snapshot.val().researcher;
-          console.log(snapshot.val().researcher);
+      // TODO: check if your that logs in is a researcher DONE
 
-          researcher_val = researcher_val + 1;
-          console.log("researcher_val = " + researcher_val);
+      var update_reseacher = firebase.database().ref("speciesid/accounts/");
 
-          firebase.database().ref("speciesid/accounts").child(firebaseUser.uid).update({
-            "researcher": researcher_val
-          });
+      update_reseacher.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+
+          var find_email = childSnapshot.val().email;
+
+          if (find_email == email_login) {
+
+            var researcher_val = childSnapshot.val().researcher;
+
+            if (researcher_val >= 3) {
+
+              firebase.auth().onAuthStateChanged(firebaseUser => {
+
+                if(firebaseUser){
+
+                  var update_reseacher = firebase.database().ref("speciesid/accounts/");
+
+                  update_reseacher.once("value").then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+
+                      var find_email = childSnapshot.val().email;
+
+                      if (find_email == verify_email) {
+
+                        var researcher_val = childSnapshot.val().researcher;
+                        var user_uid = childSnapshot.getKey();
+
+                        researcher_val = researcher_val + 1;
+
+                        firebase.database().ref("speciesid/accounts").child(user_uid).update({
+                          "researcher": researcher_val
+                        });
+                      }
+
+                    });
+
+                  });
+
+                  show_verify_text.classList.remove('hide');
+
+                  verify_text.classList.add('hide');
+                  email_login_text.classList.add('hide');
+                  password_login_text.classList.add('hide');
+                  email_of_user_text.classList.add('hide');
+                  email_verify_text.classList.add('hide');
+                  submit_btn.classList.add('hide');
+
+                  firebase.auth().signOut();
+
+                }
+
+              });
+
+            } else {
+
+              alert("This user is not a researcher");
+
+            }
+
+          }
 
         });
 
-        show_verify_text.classList.remove('hide');
+      });
 
-        verify_text.classList.add('hide');
-        email_login_text.classList.add('hide');
-        password_login_text.classList.add('hide');
-        email_of_user_text.classList.add('hide');
-        email_verify_text.classList.add('hide');
-        submit_btn.classList.add('hide');
-
-        firebase.auth().signOut();
-
-      }
-
-    });
+    }
 
   });
 

@@ -528,6 +528,12 @@ html {
     height: 100%;
 }
 
+.icons{
+    display: inline-block;
+    width: 20px; 
+    height: 30px; 
+}
+
 /* Field Guide Section */
 .field_guide_section {
     border-radius: 10px;

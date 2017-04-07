@@ -1,6 +1,9 @@
 (function() {
 
   // Get elements
+  const check_mark = document.getElementById("check_mark");
+  const check_mark2 = document.getElementById("check_mark2");
+
   const verify_researcher_text = document.getElementById('verify_researcher_text');
   const verify_researcher_input = document.getElementById('verify_researcher_input');
   const verify_researcher_submit = document.getElementById('verify_researcher_submit');
@@ -57,7 +60,7 @@
 
   // Add logout event
   btnLogout.addEventListener('click', e => { 
-        firebase.auth().signOut();
+    firebase.auth().signOut();
   });
 
   // Add signup event
@@ -77,11 +80,12 @@
 
     } else {
 
-      const promise = auth.cfirebaseUserreateUserWithEmailAndPassword(email, pass).then(function(response) {
+      const promise = auth.createUserWithEmailAndPassword(email, pass).then(function(response) {
         //console.log(response.uid);
         firebase.database().ref("speciesid/accounts").child(response.uid).set({
             "researcher": 0.0,
-            "username": user
+            "username": user,
+            "email": email
         });
 
         promise.catch(e => alert(e.message));
@@ -93,19 +97,39 @@
   // Add reset password
   verify_researcher_btn.addEventListener('click', e => {
 
-    verify_researcher_text.classList.remove('hide');
-    verify_researcher_input.classList.remove('hide');
-    verify_researcher_submit.classList.remove('hide');
-    verify_researcher_quit.classList.remove('hide');
+    // TODO: Check if already Resaercher DONE
 
-    welcome_txt.classList.add('hide');
-    user_email.classList.add('hide');
-    user_status.classList.add('hide');
-    reset_password_txt.classList.add('hide');
-    verify_researcher_btn.classList.add('hide');
-    btnLogout.classList.add('hide');
-    recent_observations.classList.add('hide');
-    no_observations.classList.add('hide');
+    const user_uid = firebase.auth().currentUser.uid;
+
+    var check_reseacher = firebase.database().ref("speciesid/accounts/").child(user_uid);
+
+    check_reseacher.once("value").then(function(snapshot) {
+
+      var get_researcher_val = snapshot.val().researcher;
+
+      if (get_researcher_val >= 3) {
+
+        alert("You are already a researcher");
+
+      } else {
+
+        verify_researcher_text.classList.remove('hide');
+        verify_researcher_input.classList.remove('hide');
+        verify_researcher_submit.classList.remove('hide');
+        verify_researcher_quit.classList.remove('hide');
+
+        welcome_txt.classList.add('hide');
+        user_email.classList.add('hide');
+        user_status.classList.add('hide');
+        reset_password_txt.classList.add('hide');
+        verify_researcher_btn.classList.add('hide');
+        btnLogout.classList.add('hide');
+        recent_observations.classList.add('hide');
+        no_observations.classList.add('hide');
+
+      }
+
+    });
 
   });
 
@@ -113,32 +137,60 @@
   verify_researcher_submit.addEventListener('click', e => {
 
     const email = verify_researcher_input.value;
-    const user_email = firebase.auth().currentUser.email;
+    const verify_email = firebase.auth().currentUser.email;
 
-    //alert(user_email);
+    // TODO: Check that user is sending reseacher verification to themself DONE
 
-    // TODO: Send email
+    if (email == verify_email) {
 
-    // parameters: service_id, template_id, template_parameters
-    //emailjs.send("default_service","template_gZiF4gse",{name: "Ryan", notes: "Check this out!"});
+      alert("You can't verify yourself");
 
-    emailjs.send("mailjet", "verify_researcher", {"link":"https://speciesid-ca814.firebaseapp.com/verify.html","email":email,"user_email":user_email})
+    } else {
 
-    //alert("Email has been sent");
+      // TODO: Check if person sending email to is a reseacher DONE
 
-    verify_researcher_text.classList.add('hide');
-    verify_researcher_input.classList.add('hide');
-    verify_researcher_submit.classList.add('hide');
-    verify_researcher_quit.classList.add('hide');
+      var update_reseacher = firebase.database().ref("speciesid/accounts/");
 
-    welcome_txt.classList.remove('hide');
-    user_email.classList.remove('hide');
-    user_status.classList.remove('hide');
-    reset_password_txt.classList.remove('hide');
-    verify_researcher_btn.classList.remove('hide');
-    btnLogout.classList.remove('hide');
-    recent_observations.classList.remove('hide');
-    no_observations.classList.remove('hide');
+      update_reseacher.once("value").then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+
+          var find_email = childSnapshot.val().email;
+
+          if (find_email == email) {
+
+            var researcher_val = childSnapshot.val().researcher;
+
+            if (researcher_val >= 3) {
+
+              emailjs.send("mailjet", "verify_researcher", {"link":"https://speciesid-ca814.firebaseapp.com/verify.html","email":email,"user_email":verify_email})
+
+              verify_researcher_text.classList.add('hide');
+              verify_researcher_input.classList.add('hide');
+              verify_researcher_submit.classList.add('hide');
+              verify_researcher_quit.classList.add('hide');
+
+              welcome_txt.classList.remove('hide');
+              user_email.classList.remove('hide');
+              user_status.classList.remove('hide');
+              reset_password_txt.classList.remove('hide');
+              verify_researcher_btn.classList.remove('hide');
+              btnLogout.classList.remove('hide');
+              recent_observations.classList.remove('hide');
+              no_observations.classList.remove('hide');
+
+            } else {
+
+              alert("This user is not a researcher");
+
+            }
+
+          }
+
+        });
+
+      });
+
+    }
 
   });
 
@@ -179,8 +231,8 @@
 
   reset_password_yes.addEventListener('click', e => {
 
-    const email = user_email.textContent;
-    const promise = auth.sendPasswordResetEmail(email);
+    const email = firebase.auth().currentUser.email;
+    auth.sendPasswordResetEmail(email);
 
     alert("Please check your email");
 
@@ -317,10 +369,27 @@
         welcome_txt.textContent = "Welcome back " + snapshot.val().username + "!";
         user_email.textContent = "Email: " + firebaseUser.email;
 
-        if (snapshot.val().researcher < 3) {
+        // TODO: Check marks to show verification progress
+
+        if (snapshot.val().researcher = 0) {
           user_status.textContent = "Account: User";
-        } else {
+          check_mark.classList.add('hide');
+          check_mark2.classList.add('hide');
+        }
+        if (snapshot.val().researcher = 1) {
+          user_status.textContent = "Account: User";
+          check_mark.classList.remove('hide');
+          check_mark2.classList.add('hide');
+        }
+        if (snapshot.val().researcher = 2) {
+          user_status.textContent = "Account: User";
+          check_mark.classList.remove('hide');
+          check_mark2.classList.remove('hide');
+        }
+        if (snapshot.val().researcher = 3){
           user_status.textContent = "Account: Reseacher";
+          check_mark.classList.add('hide');
+          check_mark2.classList.add('hide');
         }
 
       });
@@ -369,6 +438,9 @@
 	  btnLogout.classList.add('hide');
     recent_observations.classList.add('hide');
     no_observations.classList.add('hide');
+
+    check_mark.classList.add('hide');
+    check_mark2.classList.add('hide');
 
     have_account_txt.classList.remove('hide');
     txtEmail_login.classList.remove('hide');
