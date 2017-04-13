@@ -19,33 +19,25 @@ window.onclick = function(event) {
   }
 }
 */
-
 (function() {
 
 
-  // Get elements
-  const txtSearch = document.getElementById('txtSearch');
-  const btnSearch = document.getElementById('btnSearch');
-  const btnFilter = document.getElementById('btnFilter');
-  const btnDownload = document.getElementById('btnDownload');
+    // Get elements
+    const txtSearch = document.getElementById('txtSearch');
+    const btnSearch = document.getElementById('btnSearch');
+    const btnFilter = document.getElementById('btnFilter');
+    const btnDownload = document.getElementById('btnDownload');
 
-  // Firebase 
-  const database = firebase.database(); // root of database
-  const storage = firebase.storage();
-
-/*
-  // Add login event
-  btnLogin.addEventListener('click', e => {
-
-        // get email and pass
-        const email = txtEmail.value;
-        const pass = txtPassword.value;
-
-        // Sign in
-        const promise = auth.signInWithEmailAndPassword(txtEmail.value, pass);
-        promise.catch(e => alert(e.message));
-
-  });
-  */
+    // Firebase 
+    const database = firebase.database(); // root of database
+    const storage = firebase.storage();
+    // Add login event
+    $(document).ready(function() {
+        $('.dropdown-submenu a.test').on("click", function(e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    });
 
 }());

@@ -72,48 +72,320 @@
 	 <div id="twrap">
 
     <h1 style="text-shadow: 2px 2px #000000">Observations</h1>
+    <button id="verified_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers_verified();">Verified</button>
+    <button id="not_verified_btn" class="btn btn-action" style="height:32px;width:120px" onclick="showMarkers_not_verified();">Not Verified</button>
+    <button id="all_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers();">All</button>
     <br></br>
       <div class="home_section">
-          <div align="left" style="float:left;width:50%;">
-            <br></br>
-            <div id="map" style="width:400px;height:400px;background:yellow"></div>
-            <script>
-            function myMap() {
-            var mapOptions = {
-                center: new google.maps.LatLng(40.0605419, -105.5816675),
-                zoom: 12,
-                mapTypeId: google.maps.MapTypeId.HYBRID
-            }
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks&callback=myMap"></script>
+        <br></br>
+        <div id="map" style="width:100%;height:300px;background:black"></div>
 
-            <p><input type="checkbox" name="verified" value="true"> Verified</p>
-            <p><input type="checkbox" name="not_verified" value="true"> Not Verified</p>
-            <p><input type="checkbox" name="all" value="true"> All</h4>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+	    <script>
+	      // Initialize Firebase
+	      var config = {
+	        apiKey: "AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks",
+	        authDomain: "speciesid-ca814.firebaseapp.com",
+	        databaseURL: "https://speciesid-ca814.firebaseio.com",
+	        storageBucket: "speciesid-ca814.appspot.com",
+	        messagingSenderId: "794603922973"
+	      };
+	      firebase.initializeApp(config);
+	    </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks"></script>
+        <script>
 
+        // Firebase stuff
+        const auth = firebase.auth();
+        const obs_database = firebase.database().ref("speciesid/observations");
+        const acc_database = firebase.database().ref("speciesid/accounts");
+
+        // Map and marker arrays
+        var map;
+        var verified_markers = [];
+        var not_verified_markers = [];
+
+        function initMap() {
+        	/*
+	      var sessionsRef = firebase.database().ref("speciesid/observations");
+			sessionsRef.push({
+			timestamp: firebase.database.ServerValue.TIMESTAMP
+		  });
+		  */
+
+          var verified_btn = document.getElementById('verified_btn');
+          var not_verified_btn = document.getElementById('not_verified_btn');
+          var all_btn = document.getElementById('all_btn');
+
+          const display_recent_observations = document.getElementById('display_recent_observations');
+          const display_species_name = document.getElementById('display_species_name');
+
+          const display_verified = document.getElementById('display_verified');
+          const display_verified_main = document.getElementById('display_verified_main');
+          const display_username = document.getElementById('display_username');
+          const display_username_main = document.getElementById('display_username_main');
+          const display_datetime = document.getElementById('display_datetime');
+          const display_datetime_main = document.getElementById('display_datetime_main');
+          const display_lat = document.getElementById('display_lat_main');
+          const display_lat_main = document.getElementById('display_lat');
+          const display_long = document.getElementById('display_long');
+          const display_long_main = document.getElementById('display_long');
+          const display_comments = document.getElementById('display_comments');
+          const display_comments_main = document.getElementById('display_comments_main');
+
+          //var niwot = {lat: 40.03287778, lng: -105.5464028};
+          //var niwot2 = {lat: 40.03257778, lng: -105.5364028};
+          //var niwot3 = {lat: 40.05284778, lng: -105.5566028};
+          //var niwot4 = {lat: 40.02227778, lng: -105.5474028};              
+          //var niwot5 = {lat: 40.04287778, lng: -105.5664028};
+
+          var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(40.03287778, -105.5464028),
+            styles: [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"color":"#207f35"},{"saturation":"-27"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#1d7a34"},{"weight":"2.70"}]},{"featureType":"administrative.locality","elementType":"labels.icon","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#4ca634"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"labels.text","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"landscape","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"lightness":"7"},{"weight":"2.70"},{"color":"#1d7a34"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"on"},{"color":"#71b347"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#1d7a34"},{"lightness":"7"},{"weight":"2.70"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"simplified"},{"color":"#c6d19d"}]},{"featureType":"road","elementType":"labels.text","stylers":[{"visibility":"off"},{"color":"#ffffff"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"},{"visibility":"on"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#1d7a34"},{"weight":"1.99"},{"saturation":"0"},{"lightness":"7"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"on"},{"color":"#d0d0d0"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"weight":"1"},{"saturation":"0"},{"visibility":"on"},{"color":"#ffffff"}]},{"featureType":"road.highway","elementType":"labels.text.stroke","stylers":[{"color":"#1d7a34"},{"lightness":"7"},{"gamma":"1"},{"weight":"1.99"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"visibility":"off"},{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.local","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e2f9ff"}]},{"featureType":"water","elementType":"labels","stylers":[{"color":"#1f7833"},{"visibility":"on"},{"saturation":"-32"}]}]
+
+          };
+          var mapElement = document.getElementById('map');
+
+          map = new google.maps.Map(mapElement, mapOptions);
+
+          // Query obs database
+          obs_database.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+
+            	var comments = childSnapshot.val().comments;
+            	var gps_lat = childSnapshot.val().gps_lat;
+            	var gps_long = childSnapshot.val().gps_long;
+            	var is_synced = childSnapshot.val().is_synced;
+            	var is_verified = childSnapshot.val().is_verified;
+            	var plant_code = childSnapshot.val().plant_code;
+            	var species_name = childSnapshot.val().species_name;
+            	var username = childSnapshot.val().username;
+
+            	var gps_loc = {lat: gps_lat, lng: gps_long}; 
+
+            	if (is_verified >= 3) {
+            		addMarker_verified(gps_loc, map);
+            	} else {
+            		addMarker_not_verified(gps_loc, map);
+            	}         	
+
+           	});
+
+          });
+
+        }
+
+        function addMarker_verified(location) {
+
+          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fpin_blue_small.png?alt=media&token=66aed96b-004b-4c31-8273-19ad038e19b0';
+          var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            icon: image
+          });
+
+          marker.addListener('click', function() {
+            map.setCenter(marker.getPosition());
+
+	        // Query obs database
+	          obs_database.once("value").then(function(snapshot) {
+	            snapshot.forEach(function(childSnapshot) {
+
+	            	var comments = childSnapshot.val().comments;
+	            	var gps_lat = childSnapshot.val().gps_lat;
+	            	var gps_long = childSnapshot.val().gps_long;
+	            	var is_verified = childSnapshot.val().is_verified;
+	            	var species_name = childSnapshot.val().species_name;
+	            	var username = childSnapshot.val().username;
+
+	            	var uid_timestamp = childSnapshot.getKey();
+	            	var timestamp = uid_timestamp.substr(29);
+
+			        var storage = firebase.storage();
+		            var storageRef = storage.ref();
+		            var tangRef = storageRef.child('observations/' + uid_timestamp + '.jpg');
+
+		            tangRef.getDownloadURL().then(function(url) {
+		                document.getElementById('obs_image').src = url;
+		            })
+
+		            display_species_name.textContent = species_name;
+		            display_verified.textContent = is_verified;
+		            display_username.textContent = username;
+		            display_datetime.textContent = timestamp;
+		            display_lat.textContent = gps_lat;
+		            display_long.textContent = gps_long;
+		            display_comments.textContent = comments;
+
+	           	});
+
+	          });
+
+	        display_recent_observations.classList.add('hide');
+            display_species_name.classList.remove('hide');
+
+            display_verified.classList.remove('hide');
+            display_verified_main.classList.remove('hide');
+            display_username.classList.remove('hide');
+            display_username_main.classList.remove('hide');
+            display_datetime.classList.remove('hide');
+            display_datetime_main.classList.remove('hide');
+            display_lat.classList.remove('hide');
+            display_lat_main.classList.remove('hide');
+            display_long.classList.remove('hide');
+            display_long_main.classList.remove('hide');
+            display_comments.classList.remove('hide');
+            display_comments_main.classList.remove('hide');
+
+          });
+
+          verified_markers.push(marker);
+        }
+
+        function addMarker_not_verified(location) {
+          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fpin_red_small.png?alt=media&token=f78d1b25-50ef-4c18-af12-a33109a33783';
+          var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            icon: image
+          });
+
+          marker.addListener('click', function() {
+            map.setCenter(marker.getPosition());
+
+	        // Query obs database
+	          obs_database.once("value").then(function(snapshot) {
+	            snapshot.forEach(function(childSnapshot) {
+
+	            	var comments = childSnapshot.val().comments;
+	            	var gps_lat = childSnapshot.val().gps_lat;
+	            	var gps_long = childSnapshot.val().gps_long;
+	            	var is_verified = childSnapshot.val().is_verified;
+	            	var species_name = childSnapshot.val().species_name;
+	            	var username = childSnapshot.val().username;
+
+	            	var uid_timestamp = childSnapshot.getKey();
+	            	var timestamp = uid_timestamp.substr(29);
+
+	            	var storage = firebase.storage();
+		            var storageRef = storage.ref();
+		            var tangRef = storageRef.child('observations/' + uid_timestamp + '.jpg');
+
+		            tangRef.getDownloadURL().then(function(url) {
+		                document.getElementById('obs_image').src = url;
+		            })
+
+		            display_species_name.textContent = species_name;
+		            display_verified.textContent = is_verified;
+		            display_username.textContent = username;
+		            display_datetime.textContent = timestamp;
+		            display_lat.textContent = gps_lat;
+		            display_long.textContent = gps_long;
+		            display_comments.textContent = comments;
+
+	           	});
+
+	          });
+
+	        display_recent_observations.classList.add('hide');
+            display_species_name.classList.remove('hide');
+
+            display_verified.classList.remove('hide');
+            display_verified_main.classList.remove('hide');
+            display_username.classList.remove('hide');
+            display_username_main.classList.remove('hide');
+            display_datetime.classList.remove('hide');
+            display_datetime_main.classList.remove('hide');
+            display_lat.classList.remove('hide');
+            display_lat_main.classList.remove('hide');
+            display_long.classList.remove('hide');
+            display_long_main.classList.remove('hide');
+            display_comments.classList.remove('hide');
+            display_comments_main.classList.remove('hide');
+
+          });
+
+          not_verified_markers.push(marker);
+        }
+
+        function setMap_verfied(map) {
+          for (var i = 0; i < verified_markers.length; i++) {
+            verified_markers[i].setMap(map);
+          }
+        }
+
+        function setMap_not_verfied(map) {
+          for (var i = 0; i < not_verified_markers.length; i++) {
+            not_verified_markers[i].setMap(map);
+          }
+        }
+
+        function showMarkers_verified() {
+          setMap_verfied(map);
+          setMap_not_verfied(null);
+        }
+
+        function showMarkers_not_verified() {
+          setMap_verfied(null);
+          setMap_not_verfied(map);
+        }
+
+        function showMarkers() {
+          setMap_verfied(map);
+          setMap_not_verfied(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+
+        </script>
+        <h2 id="display_recent_observations" style="text-align:center;color:#dddddd;">Recent Observations</h2>
+        <h2 id="display_species_name" class="hide" style="text-align:center;color:#dddddd;"></h2>
+
+        <div align="left" style="float:left;width:50%;">
+
+          <div style="clear: both">
+            <img id="obs_image" height="500" width="500" style="float:left;"/>
           </div>
+
+           <div style="clear: both">
+          	<h4 id="display_verified_main" class="hide" style="float:left;color:#dddddd;">Verified:</h4>
+            <h5 id="display_verified" style="float:right;width:100%;"></h5>
+          </div>
+
+        </div>
         <div align="right" style="float:right;width:50%;">
-          <h2 id="recent_observations" style="text-align:center;color:#dddddd;">Recent Observations</h2>
+
+          <div style="clear: both">
+          	<h4 id="display_username_main" class="hide" style="float:left;color:#dddddd;">User:</h4>
+            <h5 id="display_username" style="float:right;width:50%;"></h5>
+          </div>
+
+          <div style="clear: both">
+          	<h4 id="display_datetime_main" class="hide" style="float:left;color:#dddddd;">Date:</h4>
+            <h5 id="display_datetime" style="float:right;width:50%;"></h5>
+          </div>
+
+          <div style="clear: both">
+          	<h4 id="display_lat_main" class="hide" style="float:left;color:#dddddd;">Latitude:</h4>
+            <h5 id="display_lat" style="float:right;width:50%;"></h5>
+          </div>
+
+          <div style="clear: both">
+          	<h4 id="display_long_main" class="hide" style="float:left;color:#dddddd;">Longitude:</h4>
+            <h5 id="display_long" style="float:right;width:50%;"></h5>
+          </div>
+
+          <div style="clear: both">
+          	<h4 id="display_comments_main" class="hide" style="float:left;color:#dddddd;">Comments:</h4>
+            <h5 id="display_comments" style="float:right;width:50%;"></h5>
+          </div>
+
         </div>
 
       </div>  
 
 	 </div>
-	 
-    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks",
-        authDomain: "speciesid-ca814.firebaseapp.com",
-        databaseURL: "https://speciesid-ca814.firebaseio.com",
-        storageBucket: "speciesid-ca814.appspot.com",
-        messagingSenderId: "794603922973"
-      };
-      firebase.initializeApp(config);
-    </script>
 
   </body>
 </html>

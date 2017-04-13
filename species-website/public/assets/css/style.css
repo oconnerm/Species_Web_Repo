@@ -92,6 +92,12 @@ a:focus {
 	text-align: center
 }
 
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
 /*	################################################################
 	BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
@@ -524,7 +530,7 @@ b, strong {
 
 /* TODO: Make sure there's no over scrolling */
 html {
-    overflow: auto;
+    overflow: scroll;
     height: 100%;
 }
 
@@ -543,8 +549,9 @@ html {
 }
 
 /* Filter button */
+
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #384452;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -552,12 +559,12 @@ html {
     cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #384453;
 }
 
 .dropdown {
-    float: right;
     position: relative;
     display: inline-block;
 }
@@ -565,10 +572,10 @@ html {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #384453;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     right: 0;
     z-index: 1;
 }
@@ -580,6 +587,10 @@ html {
     display: block;
 }
 
-.dropdown a:hover {background-color: #f1f1f1}
+.dropdown a:hover {
+    background-color: #222222
+}
 
-.show {display:block;}
+.show {
+    display: block;
+}

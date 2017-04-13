@@ -371,22 +371,22 @@
 
         // TODO: Check marks to show verification progress
 
-        if (snapshot.val().researcher = 0) {
+        if (snapshot.val().researcher == 0) {
           user_status.textContent = "Account: User";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
         }
-        if (snapshot.val().researcher = 1) {
+        if (snapshot.val().researcher == 1) {
           user_status.textContent = "Account: User";
           check_mark.classList.remove('hide');
           check_mark2.classList.add('hide');
         }
-        if (snapshot.val().researcher = 2) {
+        if (snapshot.val().researcher == 2) {
           user_status.textContent = "Account: User";
           check_mark.classList.remove('hide');
           check_mark2.classList.remove('hide');
         }
-        if (snapshot.val().researcher = 3){
+        if (snapshot.val().researcher == 3){
           user_status.textContent = "Account: Reseacher";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
