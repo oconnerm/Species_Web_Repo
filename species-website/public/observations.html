@@ -69,14 +69,14 @@
 	<!-- *****************************************************************************************************************
 	 BODY
 	 ***************************************************************************************************************** -->
-	 <div id="twrap">
+	<div id="twrap">
 
     <h1 style="text-shadow: 2px 2px #000000">Observations</h1>
     <button id="verified_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers_verified();">Verified</button>
     <button id="not_verified_btn" class="btn btn-action" style="height:32px;width:120px" onclick="showMarkers_not_verified();">Not Verified</button>
     <button id="all_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers();">All</button>
     <br></br>
-      <div class="home_section">
+      <div class="home_section" style="min-height: 850px;">
         <br></br>
         <div id="map" style="width:100%;height:300px;background:black"></div>
 
@@ -96,48 +96,44 @@
         <script>
 
         // Firebase stuff
-        const auth = firebase.auth();
         const obs_database = firebase.database().ref("speciesid/observations");
         const acc_database = firebase.database().ref("speciesid/accounts");
 
-        // Map and marker arrays
+        // Researcher Check
+        var is_researcher = false;
+
+        // Check for researcher
+	  	firebase.auth().onAuthStateChanged(firebaseUser => {
+			if (firebaseUser) {
+
+		     	acc_database.once("value").then(function(snapshot) {
+		        	snapshot.forEach(function(childSnapshot) {
+
+			        	var user_uid = childSnapshot.getKey();
+			    		var researcher_val = childSnapshot.val().researcher;
+
+			        	if (user_uid == firebaseUser.uid) {
+
+			        		if (researcher_val >= 3) {
+			        			is_researcher = true;
+			        		}
+		        		}
+		        	});
+		      	});
+			} 
+		});
+
+        // Map, marker arrays, obs array
         var map;
         var verified_markers = [];
         var not_verified_markers = [];
+        var observation_array = [];
 
         function initMap() {
-        	/*
-	      var sessionsRef = firebase.database().ref("speciesid/observations");
-			sessionsRef.push({
-			timestamp: firebase.database.ServerValue.TIMESTAMP
-		  });
-		  */
 
           var verified_btn = document.getElementById('verified_btn');
           var not_verified_btn = document.getElementById('not_verified_btn');
           var all_btn = document.getElementById('all_btn');
-
-          const display_recent_observations = document.getElementById('display_recent_observations');
-          const display_species_name = document.getElementById('display_species_name');
-
-          const display_verified = document.getElementById('display_verified');
-          const display_verified_main = document.getElementById('display_verified_main');
-          const display_username = document.getElementById('display_username');
-          const display_username_main = document.getElementById('display_username_main');
-          const display_datetime = document.getElementById('display_datetime');
-          const display_datetime_main = document.getElementById('display_datetime_main');
-          const display_lat = document.getElementById('display_lat_main');
-          const display_lat_main = document.getElementById('display_lat');
-          const display_long = document.getElementById('display_long');
-          const display_long_main = document.getElementById('display_long');
-          const display_comments = document.getElementById('display_comments');
-          const display_comments_main = document.getElementById('display_comments_main');
-
-          //var niwot = {lat: 40.03287778, lng: -105.5464028};
-          //var niwot2 = {lat: 40.03257778, lng: -105.5364028};
-          //var niwot3 = {lat: 40.05284778, lng: -105.5566028};
-          //var niwot4 = {lat: 40.02227778, lng: -105.5474028};              
-          //var niwot5 = {lat: 40.04287778, lng: -105.5664028};
 
           var mapOptions = {
             zoom: 12,
@@ -153,32 +149,44 @@
           obs_database.once("value").then(function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
 
-            	var comments = childSnapshot.val().comments;
             	var gps_lat = childSnapshot.val().gps_lat;
             	var gps_long = childSnapshot.val().gps_long;
-            	var is_synced = childSnapshot.val().is_synced;
             	var is_verified = childSnapshot.val().is_verified;
-            	var plant_code = childSnapshot.val().plant_code;
-            	var species_name = childSnapshot.val().species_name;
-            	var username = childSnapshot.val().username;
+
+           		var uid_timestamp = childSnapshot.getKey();
 
             	var gps_loc = {lat: gps_lat, lng: gps_long}; 
 
             	if (is_verified >= 3) {
-            		addMarker_verified(gps_loc, map);
+            		addMarker_verified(gps_loc, map, uid_timestamp);
             	} else {
-            		addMarker_not_verified(gps_loc, map);
+            		addMarker_not_verified(gps_loc, map, uid_timestamp);
             	}         	
 
            	});
 
           });
 
+          // Recent Obs Data
+          var recent_obs_data = firebase.database().ref("speciesid/observations").orderByKey();
+    		recent_obs_data.once("value").then(function(snapshot) {
+            	snapshot.forEach(function(childSnapshot) {
+
+            		var observation_id = childSnapshot.getKey();
+
+            		observation_array.push(observation_id);
+
+            		//console.log(observation_array);
+            		console.log(observation_array.slice(-3));
+
+            	});
+            });
+
         }
 
-        function addMarker_verified(location) {
+        function addMarker_verified(location, map, uid_timestamp) {
 
-          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fpin_blue_small.png?alt=media&token=66aed96b-004b-4c31-8273-19ad038e19b0';
+          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fblue_small.png?alt=media&token=6d8ff7ed-ceb4-4e30-b79e-445c54588899';
           var marker = new google.maps.Marker({
             position: location,
             map: map,
@@ -187,6 +195,29 @@
 
           marker.addListener('click', function() {
             map.setCenter(marker.getPosition());
+
+	          var display_recent_observations = document.getElementById('display_recent_observations');
+	          var show_recent_observations = document.getElementById('show_recent_observations');
+	          var display_species_name = document.getElementById('display_species_name');
+	          var obs_image_main = document.getElementById('obs_image');
+
+			  var current_obs = document.getElementById('current_obs');
+
+	          var verify_obs_btn = document.getElementById('verify_obs_btn');
+	          var remove_obs_btn = document.getElementById('remove_obs_btn');
+
+	          var display_verified = document.getElementById('display_verified');
+	          var display_verified_main = document.getElementById('display_verified_main');
+	          var display_username = document.getElementById('display_username');
+	          var display_username_main = document.getElementById('display_username_main');
+	          var display_datetime = document.getElementById('display_datetime');
+	          var display_datetime_main = document.getElementById('display_datetime_main');
+	          var display_lat = document.getElementById('display_lat');
+	          var display_lat_main = document.getElementById('display_lat_main');
+	          var display_long = document.getElementById('display_long');
+	          var display_long_main = document.getElementById('display_long_main');
+	          var display_comments = document.getElementById('display_comments');
+	          var display_comments_main = document.getElementById('display_comments_main');
 
 	        // Query obs database
 	          obs_database.once("value").then(function(snapshot) {
@@ -198,33 +229,48 @@
 	            	var is_verified = childSnapshot.val().is_verified;
 	            	var species_name = childSnapshot.val().species_name;
 	            	var username = childSnapshot.val().username;
+	            	var timestamp = childSnapshot.val().datetime;
 
-	            	var uid_timestamp = childSnapshot.getKey();
-	            	var timestamp = uid_timestamp.substr(29);
+	            	var uid_timestamp_true = childSnapshot.getKey();
 
 			        var storage = firebase.storage();
 		            var storageRef = storage.ref();
 		            var tangRef = storageRef.child('observations/' + uid_timestamp + '.jpg');
 
-		            tangRef.getDownloadURL().then(function(url) {
-		                document.getElementById('obs_image').src = url;
-		            })
+		            if (uid_timestamp == uid_timestamp_true) {
 
-		            display_species_name.textContent = species_name;
-		            display_verified.textContent = is_verified;
-		            display_username.textContent = username;
-		            display_datetime.textContent = timestamp;
-		            display_lat.textContent = gps_lat;
-		            display_long.textContent = gps_long;
-		            display_comments.textContent = comments;
+			            tangRef.getDownloadURL().then(function(url) {
+			                document.getElementById('obs_image').src = url;
+			            })
+
+			            display_species_name.textContent = species_name;
+			            display_username.textContent = username;
+			            display_datetime.textContent = timestamp;
+			            display_lat.textContent = gps_lat;
+			            display_long.textContent = gps_long;
+			            display_comments.textContent = comments;
+
+			           	current_obs.textContent = uid_timestamp_true;
+
+		            }
 
 	           	});
 
 	          });
 
 	        display_recent_observations.classList.add('hide');
+	       	show_recent_observations.classList.add('hide');
             display_species_name.classList.remove('hide');
+            obs_image_main.classList.remove('hide');
 
+            if (is_researcher) {
+            	verify_obs_btn.classList.remove('hide');
+            } else {
+            	verify_obs_btn.classList.add('hide');
+            }
+            //remove_obs_btn.classList.remove('hide');
+
+			display_not_verified.classList.add('hide');
             display_verified.classList.remove('hide');
             display_verified_main.classList.remove('hide');
             display_username.classList.remove('hide');
@@ -243,16 +289,40 @@
           verified_markers.push(marker);
         }
 
-        function addMarker_not_verified(location) {
-          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fpin_red_small.png?alt=media&token=f78d1b25-50ef-4c18-af12-a33109a33783';
-          var marker = new google.maps.Marker({
+        function addMarker_not_verified(location, map, uid_timestamp) {
+
+          var image = 'https://firebasestorage.googleapis.com/v0/b/speciesid-ca814.appspot.com/o/google%20maps%2Fred_small.png?alt=media&token=b8887eec-5075-422f-a515-ba4bce116f0d';
+          var marker_not_ver = new google.maps.Marker({
             position: location,
             map: map,
             icon: image
           });
 
-          marker.addListener('click', function() {
-            map.setCenter(marker.getPosition());
+          marker_not_ver.addListener('click', function() {
+            map.setCenter(marker_not_ver.getPosition());
+
+	          var display_recent_observations = document.getElementById('display_recent_observations');
+	          var show_recent_observations = document.getElementById('show_recent_observations');
+	          var display_species_name = document.getElementById('display_species_name');
+			  var obs_image_main = document.getElementById('obs_image');
+
+			  var current_obs = document.getElementById('current_obs');
+
+	          var verify_obs_btn = document.getElementById('verify_obs_btn');
+	          var remove_obs_btn = document.getElementById('remove_obs_btn');
+
+	          var display_not_verified = document.getElementById('display_not_verified');
+	          var display_verified_main = document.getElementById('display_verified_main');
+	          var display_username = document.getElementById('display_username');
+	          var display_username_main = document.getElementById('display_username_main');
+	          var display_datetime = document.getElementById('display_datetime');
+	          var display_datetime_main = document.getElementById('display_datetime_main');
+	          var display_lat = document.getElementById('display_lat');
+	          var display_lat_main = document.getElementById('display_lat_main');
+	          var display_long = document.getElementById('display_long');
+	          var display_long_main = document.getElementById('display_long_main');
+	          var display_comments = document.getElementById('display_comments');
+	          var display_comments_main = document.getElementById('display_comments_main');
 
 	        // Query obs database
 	          obs_database.once("value").then(function(snapshot) {
@@ -264,34 +334,49 @@
 	            	var is_verified = childSnapshot.val().is_verified;
 	            	var species_name = childSnapshot.val().species_name;
 	            	var username = childSnapshot.val().username;
+	            	var timestamp = childSnapshot.val().datetime;
 
-	            	var uid_timestamp = childSnapshot.getKey();
-	            	var timestamp = uid_timestamp.substr(29);
+	            	var uid_timestamp_true = childSnapshot.getKey();
 
 	            	var storage = firebase.storage();
 		            var storageRef = storage.ref();
 		            var tangRef = storageRef.child('observations/' + uid_timestamp + '.jpg');
 
-		            tangRef.getDownloadURL().then(function(url) {
-		                document.getElementById('obs_image').src = url;
-		            })
+		            if (uid_timestamp == uid_timestamp_true) {
 
-		            display_species_name.textContent = species_name;
-		            display_verified.textContent = is_verified;
-		            display_username.textContent = username;
-		            display_datetime.textContent = timestamp;
-		            display_lat.textContent = gps_lat;
-		            display_long.textContent = gps_long;
-		            display_comments.textContent = comments;
+			            tangRef.getDownloadURL().then(function(url) {
+			                document.getElementById('obs_image').src = url;
+			            })
+
+			            display_species_name.textContent = species_name;
+			            display_username.textContent = username;
+			            display_datetime.textContent = timestamp;
+			            display_lat.textContent = gps_lat;
+			            display_long.textContent = gps_long;
+			            display_comments.textContent = comments;
+
+			            current_obs.textContent = uid_timestamp_true;
+
+		            }
 
 	           	});
 
 	          });
 
 	        display_recent_observations.classList.add('hide');
+	        show_recent_observations.classList.add('hide');
             display_species_name.classList.remove('hide');
+			obs_image_main.classList.remove('hide');
 
-            display_verified.classList.remove('hide');
+            if (is_researcher) {
+            	verify_obs_btn.classList.remove('hide');
+            } else {
+            	verify_obs_btn.classList.add('hide');
+            }
+            //remove_obs_btn.classList.remove('hide');
+
+            display_verified.classList.add('hide');
+            display_not_verified.classList.remove('hide');
             display_verified_main.classList.remove('hide');
             display_username.classList.remove('hide');
             display_username_main.classList.remove('hide');
@@ -306,7 +391,7 @@
 
           });
 
-          not_verified_markers.push(marker);
+          not_verified_markers.push(marker_not_ver);
         }
 
         function setMap_verfied(map) {
@@ -336,25 +421,67 @@
           setMap_not_verfied(map);
         }
 
+        function verify_obs_func() {
+
+          var uid_timestamp = document.getElementById('current_obs').textContent;
+
+          obs_database.once("value").then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+
+            	var uid_timestamp_true = childSnapshot.getKey();
+
+	            if (uid_timestamp == uid_timestamp_true) {
+
+	                var verify_number = childSnapshot.val().is_verified;
+
+	                verify_number = verify_number + 1;
+
+	                firebase.database().ref("speciesid/observations").child(uid_timestamp).update({
+	                  "is_verified": verify_number
+	                });
+	            }
+           	});
+          });
+
+          alert("Observation verified! (Need 3)");
+
+        }
+
         google.maps.event.addDomListener(window, 'load', initMap);
 
         </script>
         <h2 id="display_recent_observations" style="text-align:center;color:#dddddd;">Recent Observations</h2>
+
+        <div id="show_recent_observations" style="clear:both;">
+			<div id="container_obs">
+				<h3><span id="observation_1" class="columnh2_obs">Obs 1</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
+				<h3><span id="observation_2" class="columnh2_obs">Obs 2</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
+				<h3><span id="observation_3" class="columnh2_obs">Obs 3</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
+			</div>
+        </div>
+
         <h2 id="display_species_name" class="hide" style="text-align:center;color:#dddddd;"></h2>
 
         <div align="left" style="float:left;width:50%;">
 
-          <div style="clear: both">
-            <img id="obs_image" height="500" width="500" style="float:left;"/>
-          </div>
+          <h4 id="current_obs" class="hide"></h4>
 
-           <div style="clear: both">
-          	<h4 id="display_verified_main" class="hide" style="float:left;color:#dddddd;">Verified:</h4>
-            <h5 id="display_verified" style="float:right;width:100%;"></h5>
+          <div style="clear:both;">
+            <img id="obs_image" class="hide" style="vertical-align:middle;height:250px;width:315px"/>
+       	    <h4 id="display_verified_main" class="hide" style="text-align:center;color:#dddddd;">Verified:</h4>
+      		<img src="assets/img/check.png" id="display_verified" class="icons hide" style="vertical-align:middle;">
+      		<img src="assets/img/x.png" id="display_not_verified" class="icons hide" style="vertical-align:middle;">
           </div>
+          <br></br>
+          <div style="clear: both;text-align: center;">
+          	<button id="verify_obs_btn" class="btn btn-action hide" style="height:32px;width:120px" onclick="verify_obs_func();">Verify</button>
+          	<!--
+    	  	<button id="remove_obs_btn" class="btn btn-action hide" style="height:32px;width:120px">Remove</button>
+    	  	-->
+    	  </div>
 
         </div>
-        <div align="right" style="float:right;width:50%;">
+        <div align="right" style="float:right;width:50%;padding:0px 65px">
 
           <div style="clear: both">
           	<h4 id="display_username_main" class="hide" style="float:left;color:#dddddd;">User:</h4>
@@ -380,12 +507,8 @@
           	<h4 id="display_comments_main" class="hide" style="float:left;color:#dddddd;">Comments:</h4>
             <h5 id="display_comments" style="float:right;width:50%;"></h5>
           </div>
-
         </div>
-
       </div>  
-
 	 </div>
-
   </body>
 </html>

@@ -535,7 +535,6 @@ html {
 }
 
 .icons{
-    display: inline-block;
     width: 20px; 
     height: 30px; 
 }
@@ -546,6 +545,35 @@ html {
     background-color: #384452;
     padding: 25px; 
     min-height: 575px;
+}
+
+/* Obs images */
+
+#container_obs { 
+	width: 100%;
+	margin: 0 auto;
+}
+
+div#container_obs h3 {
+    position: relative;
+	text-align: center; 
+	float: left; 
+	width: 32.5%;
+	padding: 0px 1% 10px 1%;
+	height: 200px;
+}
+
+.columnh2_obs {
+	line-height: 200%;
+	color:#dddddd;
+}
+
+.img_obs {
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    left: 33%;
+    margin: 32px auto;
 }
 
 /* Filter button */
