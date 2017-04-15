@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Luminous Identification">
@@ -38,60 +39,62 @@
     <link href="https://fonts.googleapis.com/css?family=Snippet" rel="stylesheet">
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
+<body>
 
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Luminous ID</a>
+                <a class="navbar-brand" href="index.html">Luminous ID</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="fieldguide.html">Field Guide</a></li>
+                    <li><a href="observations.html">Observations</a></li>
+                    <li><a href="mobileapps.html">Mobile Apps</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="sisu.html">Sign In/Up</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">
-            <li><a href="fieldguide.html">Field Guide</a></li>
-            <li><a href="observations.html">Observations</a></li>
-            <li><a href="mobileapps.html">Mobile Apps</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="sisu.html">Sign In/Up</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
 
-	<!-- *****************************************************************************************************************
+    <!-- *****************************************************************************************************************
 	 BODY
 	 ***************************************************************************************************************** -->
-	 <div id="twrap">
+    <div id="twrap">
 
-    <h1 style="text-shadow: 2px 2px #000000">Download our App!</h1>
-    <br></br>
-    <div class="home_section">
-		  <h3 style="color:#dddddd;">Download our mobile apps on the Apple App Store or the Google Play Store</h3>
+        <h1 style="text-shadow: 2px 2px #000000">Download our App!</h1>
+        <br></br>
+        <div class="home_section">
+            <h3 style="color:#dddddd;">Download our mobile apps on the Apple App Store or the Google Play Store</h3>
+            <a href="https://itunes.apple.com/us/app/luminous-id/id989510801?mt=8" class="icons"><img src="assets/img/apple.png"></a>
+            <a href="https://play.google.com/store/apps/details?id=com.luminousmossboss.luminous&hl=en" class="icons"><img src="assets/img/googleplay.png"></a>
+        </div>
+
     </div>
 
-	 </div>
-	 
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks",
-        authDomain: "speciesid-ca814.firebaseapp.com",
-        databaseURL: "https://speciesid-ca814.firebaseio.com",
-        storageBucket: "speciesid-ca814.appspot.com",
-        messagingSenderId: "794603922973"
-      };
-      firebase.initializeApp(config);
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyALD0AZe1fPShuzIcNLHh87eERLXXpx3ks",
+            authDomain: "speciesid-ca814.firebaseapp.com",
+            databaseURL: "https://speciesid-ca814.firebaseio.com",
+            storageBucket: "speciesid-ca814.appspot.com",
+            messagingSenderId: "794603922973"
+        };
+        firebase.initializeApp(config);
     </script>
 
-  </body>
-</html>
+</body>
 
+</html>
