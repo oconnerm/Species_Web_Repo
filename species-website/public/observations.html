@@ -75,6 +75,181 @@
     <button id="verified_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers_verified();">Verified</button>
     <button id="not_verified_btn" class="btn btn-action" style="height:32px;width:120px" onclick="showMarkers_not_verified();">Not Verified</button>
     <button id="all_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers();">All</button>
+
+	<div class="dropdown_obs">
+	<button onclick="myFunction_obs()" class="btn btn-action" style="height:32px;width:200px">Filter</button>
+	  <div id="myDropdown_obs" class="dropdown-content_obs">
+	    <input type="text" placeholder="Search.." id="myInput_obs" onkeyup="filterFunction_obs()">
+	    <ul  style="max-height: 250px; height: 250px; overflow: auto;">
+		    <a href="#Abies lasiocarpa">Abies lasiocarpa</a>
+		    <a href="#Achillea millefolium">Achillea millefolium</a>
+		    <a href="#Aconitum columbianum">Aconitum columbianum</a>
+		    <a href="#Agrostis sp.">Agrostis sp.</a>
+		    <a href="#Allium geyeri">Allium geyeri</a>
+		    <a href="#Androsace septentrionalis">Androsace septentrionalis</a>
+		    <a href="#Anemone patens">Anemone patens</a>
+		    <a href="#Angelica grayi">Angelica grayi</a>
+		    <a href="#Antennaria media">Antennaria media</a>
+		    <a href="#Antennaria rosea">Antennaria rosea</a>
+		    <a href="#Aquilegia coerulea">Aquilegia coerulea</a>
+		    <a href="#Arenaria fendleri">Arenaria fendleri</a>
+		    <a href="#Artemisia arctica">Artemisia arctica</a>
+		    <a href="#Artemisia campestris">Artemisia campestris</a>
+		    <a href="#Artemisia pattersonii">Artemisia pattersonii</a>
+		    <a href="#Artemisia scopulorum">Artemisia scopulorum</a>
+		    <a href="#Besseya alpina">Besseya alpina</a>
+		    <a href="#Betula fontinalis">Betula fontinalis</a>
+		    <a href="#Betula glandulosa">Betula glandulosa</a>
+		    <a href="#Bistorta bistortoides">Bistorta bistortoides</a>
+		    <a href="#Bistorta vivipara">Bistorta vivipara</a>
+		    <a href="#Calamagrostis purpurascens">Calamagrostis purpurascens</a>
+		    <a href="#Caltha leptosepala">Caltha leptosepala</a>
+		    <a href="#Campanula rotundifolia">Campanula rotundifolia</a>
+		    <a href="#Campanula uniflora">Campanula uniflora</a>
+		    <a href="#Carex albonigra">Carex albonigra</a>
+		    <a href="#Carex aquatilis">Carex aquatilis</a>
+		    <a href="#Carex arapahoensis">Carex arapahoensis</a>
+		    <a href="#Carex capillaris">Carex capillaris</a>
+		    <a href="#Carex ebenea">Carex ebenea</a>
+		    <a href="#Carex elynoides">Carex elynoides</a>
+		    <a href="#Carex haydeniana">Carex haydeniana</a>
+		    <a href="#Carex heteroneura">Carex heteroneura</a>
+		    <a href="#Carex illota">Carex illota</a>
+		    <a href="#Carex lachenalii">Carex lachenalii</a>
+		    <a href="#Carex microglochin">Carex microglochin</a>
+		    <a href="#Carex misandra">Carex misandra</a>
+		    <a href="#Carex nelsonii">Carex nelsonii</a>
+		    <a href="#Carex nigricans">Carex nigricans</a>
+		    <a href="#Carex nova">Carex nova</a>
+		    <a href="#Carex perglobosa">Carex perglobosa</a>
+		    <a href="#Carex phaeocephala">Carex phaeocephala</a>
+			<a href="#Carex praeceptorum">Carex praeceptorum</a>
+		    <a href="#Carex pyrenaica">Carex pyrenaica</a>
+		    <a href="#Carex rossii">Carex rossii</a>
+		    <a href="#Carex rupestris">Carex rupestris</a>
+		    <a href="#Carex scopulorum">Carex scopulorum</a>
+		    <a href="#Carex siccata">Carex siccata</a>
+		    <a href="#Carex vernacula">Carex vernacula</a>
+		    <a href="#Cerastium arvense">Cerastium arvense</a>
+		    <a href="#Chamerion angustifolium">Chamerion angustifolium</a>
+		    <a href="#Chionophila jamesii">Chionophila jamesii</a>
+		    <a href="#Cirsium scopulorum">Cirsium scopulorum</a>
+		    <a href="#Danthonia intermedia">Danthonia intermedia</a>
+		    <a href="#Dasiphora fruticosa">Dasiphora fruticosa</a>
+		    <a href="#Deschampsia caespitosa">Deschampsia caespitosa</a>
+		    <a href="#Dodecatheon pulchellum">Dodecatheon pulchellum</a>
+		    <a href="#Dryas octopetala">Dryas octopetala</a>
+		    <a href="#Elymus scribneri">Elymus scribneri</a>
+		    <a href="#Epilobium anagallidifolium">Epilobium anagallidifolium</a>
+		    <a href="#Erigeron glacialis">Erigeron glacialis</a>
+		    <a href="#Erigeron melanocephalus">Erigeron melanocephalus</a>
+		    <a href="#Erigeron pinnatisectus">Erigeron pinnatisectus</a>
+		    <a href="#Erigeron simplex">Erigeron simplex</a>
+		    <a href="#Eritrichium nanum">Eritrichium nanum</a>
+		    <a href="#Erysimum capitatum">Erysimum capitatum</a>
+		    <a href="#Festuca sp.">Festuca sp.</a>
+		    <a href="#Frasera speciosa">Frasera speciosa</a>
+		    <a href="#Gentiana algida">Gentiana algida</a>
+		    <a href="#Gentiana parryi">Gentiana parryi</a>
+		    <a href="#Gentiana prostrata">Gentiana prostrata</a>
+		    <a href="#Gentianella amarella">Gentianella amarella</a>
+		    <a href="#Gentianella tenella">Gentianella tenella</a>
+		    <a href="#Gentianopsis barbellata">Gentianopsis barbellata</a>
+		    <a href="#Geum rossii">Geum rossii</a>
+		    <a href="#Helictotrichon mortonianum">Helictotrichon mortonianum</a>
+		    <a href="#Heuchera parvifolia">Heuchera parvifolia</a>
+		    <a href="#Hieracium gracile">Hieracium gracile</a>
+		    <a href="#Juncus biglumis">Juncus biglumis</a>
+		    <a href="#Juncus castaneus">Juncus castaneus</a>
+		    <a href="#Juncus drummondii">Juncus drummondii</a>
+		    <a href="#Juncus mertensianus">Juncus mertensianus</a>
+		    <a href="#Juncus parryi">Juncus parryi</a>
+		    <a href="#Juncus triglumis">Juncus triglumis</a>
+		    <a href="#Juniperus communis">Juniperus communis</a>
+		    <a href="#Kalmia polifolia">Kalmia polifolia</a>
+		    <a href="#Kobresia myosuroides">Kobresia myosuroides</a>
+		    <a href="#Lewisia pygmaea">Lewisia pygmaea</a>
+		    <a href="#Ligusticum tenuifolium">Ligusticum tenuifolium</a>
+		    <a href="#Linnea borealis">Linnea borealis</a>
+		    <a href="#Lloydia serotina">Lloydia serotina</a>
+		    <a href="#Lupinus argenteus">Lupinus argenteus</a>
+		    <a href="#Luzula spicata">Luzula spicata</a>
+		    <a href="#Mertensia ciliata">Mertensia ciliata</a>
+		    <a href="#Mertensia lanceolata">Mertensia lanceolata</a>
+		    <a href="#Minuartia obtusiloba">Minuartia obtusiloba</a>
+		    <a href="#Noccaea fendleri">Noccaea fendleri</a>
+		    <a href="#Oreoxis alpina">Oreoxis alpina</a>
+		    <a href="#Oxyria digyna">Oxyria digyna</a>
+		    <a href="#Packera cana">Packera cana</a>
+		    <a href="#Packera crocata">Packera crocata</a>
+		    <a href="#Paronychia pulvinata">Paronychia pulvinata</a>
+		    <a href="#Pedicularis groenlandica">Pedicularis groenlandica</a>
+		    <a href="#Pedicularis parryi">Pedicularis parryi</a>
+		    <a href="#Pedicularis procera">Pedicularis procera</a>
+		    <a href="#Pedicularis sudetica">Pedicularis sudetica</a>
+		    <a href="#Penstemon whippleanus">Penstemon whippleanus</a>
+		    <a href="#Phacelia sericea">Phacelia sericea</a>
+		    <a href="#Phleum alpinum">Phleum alpinum</a>
+		    <a href="#Phlox pulvinata">Phlox pulvinata</a>
+		    <a href="#Picea engelmannii">Picea engelmannii</a>
+		    <a href="#Picea pungens">Picea pungens</a>
+		    <a href="#Pinus contorta">Pinus contorta</a>
+		    <a href="#Pinus flexilis">Pinus flexilis</a>
+		    <a href="#Pinus ponderosa">Pinus ponderosa</a>
+		    <a href="#Poa sp.">Poa sp.</a>
+		    <a href="#Polemonium pulcherrimum">Polemonium pulcherrimum</a>
+		    <a href="#Polemonium viscosum">Polemonium viscosum</a>
+		    <a href="#Populus tremuloides">Populus tremuloides</a>
+		    <a href="#Potentilla diversifolia">Potentilla diversifolia</a>
+		    <a href="#Primula angustifolia">Primula angustifolia</a>
+		    <a href="#Primula parryi">Primula parryi</a>
+		    <a href="#Pseudotsuga menziesii">Pseudotsuga menziesii</a>
+		    <a href="#Ranunculus adoneus">Ranunculus adoneus</a>
+		    <a href="#Ranunculus eschscholtzii">Ranunculus eschscholtzii</a>
+		    <a href="#red Castilleja sp.">red Castilleja sp.</a>
+		    <a href="#Rhodiola integrifolia">Rhodiola integrifolia</a>
+		    <a href="#Rhodiola rhodantha">Rhodiola rhodantha</a>
+		    <a href="#Ribes sp.">Ribes sp.</a>
+		    <a href="#Rubus idaeus spp. melanolasius">Rubus idaeus spp. melanolasius</a>
+		    <a href="#Salix arctica spp. petraea">Salix arctica spp. petraea</a>
+		    <a href="#Salix glauca">Salix glauca</a>
+		    <a href="#Salix nivalis">Salix nivalis</a>
+		    <a href="#Salix planifolia">Salix planifolia</a>
+		    <a href="#Salix reticula ssp. nivalis">Salix reticula ssp. nivalis</a>
+		    <a href="#Salix villosa">Salix villosa</a>
+		    <a href="#Saxifraga bronchialis">Saxifraga bronchialis</a>
+		    <a href="#Saxifraga chrysantha">Saxifraga chrysantha</a>
+		    <a href="#Saxifraga flagellaris">Saxifraga flagellaris</a>
+		    <a href="#Saxifraga rhomboidea">Saxifraga rhomboidea</a>
+		    <a href="#Saxifraga rivularis">Saxifraga rivularis</a>
+		    <a href="#Sedum lanceolatum">Sedum lanceolatum</a>
+		    <a href="#Senecio fremontii">Senecio fremontii</a>
+		    <a href="#Sibbaldia procumbens">Sibbaldia procumbens</a>
+		    <a href="#Silene acaulis">Silene acaulis</a>
+		    <a href="#Solidago multiradiata">Solidago multiradiata</a>
+		    <a href="#Stellaria longipes">Stellaria longipes</a>
+		    <a href="#Stellaria umbellata">Stellaria umbellata</a>
+		    <a href="#Swertia perennis">Swertia perennis</a>
+		    <a href="#Tetraneuris acaulis">Tetraneuris acaulis</a>
+		    <a href="#Tetraneuris grandiflora">Tetraneuris grandiflora</a>
+		    <a href="#Tonestus lyallii">Tonestus lyallii</a>
+		    <a href="#Tonestus pygmaeus">Tonestus pygmaeus</a>
+		    <a href="#Trifolium dasyphyllum">Trifolium dasyphyllum</a>
+		    <a href="#Trifolium nanum">Trifolium nanum</a>
+		    <a href="#Trifolium parryi">Trifolium parryi</a>
+		    <a href="#Trisetum spicatum">Trisetum spicatum</a>
+		    <a href="#Trollius albiflorus">Trollius albiflorus</a>
+		    <a href="#Vaccinium caespitosum">Vaccinium caespitosum</a>
+		    <a href="#Vaccinium myrtillus">Vaccinium myrtillus</a>
+		    <a href="#Vaccinium scoparium">Vaccinium scoparium</a>
+		    <a href="#Veronica wormskjoldii">Veronica wormskjoldii</a>
+		    <a href="#Viola adunca">Viola adunca</a>
+		    <a href="#yellow Castilleja sp.">yellow Castilleja sp.</a>
+		    <a href="#Zigadenus elegans">Zigadenus elegans</a>
+		</ul>
+	  </div>
+	</div>
+
     <br></br>
       <div class="home_section" style="min-height: 850px;">
         <br></br>
@@ -522,6 +697,25 @@
           alert("Observation verified! (Need 3)");
 
         }
+
+		function myFunction_obs() {
+		    document.getElementById("myDropdown_obs").classList.toggle("show");
+		}
+
+		function filterFunction_obs() {
+		    var input, filter, ul, li, a, i;
+		    input = document.getElementById("myInput_obs");
+		    filter = input.value.toUpperCase();
+		    div = document.getElementById("myDropdown_obs");
+		    a = div.getElementsByTagName("a");
+		    for (i = 0; i < a.length; i++) {
+		        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+		            a[i].style.display = "";
+		        } else {
+		            a[i].style.display = "none";
+		        }
+		    }
+		}
 
         google.maps.event.addDomListener(window, 'load', initMap);
 
