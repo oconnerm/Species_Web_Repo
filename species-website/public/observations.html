@@ -168,19 +168,95 @@
           });
 
           // Recent Obs Data
+
+		  var observation_1 = document.getElementById('observation_1');
+		  var observation_2 = document.getElementById('observation_2');
+		  var observation_3 = document.getElementById('observation_3');
+
+		  var observation_1_name = document.getElementById('observation_1_name');
+		  var observation_2_name = document.getElementById('observation_2_name');
+		  var observation_3_name = document.getElementById('observation_3_name');
+
+		  var observation_1_img = document.getElementById('observation_1_img');
+		  var observation_2_img = document.getElementById('observation_2_img');
+		  var observation_3_img = document.getElementById('observation_3_img');
+
           var recent_obs_data = firebase.database().ref("speciesid/observations").orderByKey();
-    		recent_obs_data.once("value").then(function(snapshot) {
-            	snapshot.forEach(function(childSnapshot) {
+			recent_obs_data.once("value").then(function(snapshot) {
+	        	snapshot.forEach(function(childSnapshot) {
 
-            		var observation_id = childSnapshot.getKey();
+	        		var observation_id = childSnapshot.getKey();
 
-            		observation_array.push(observation_id);
+	        		var species_name = childSnapshot.val().species_name;
+	            	var username = childSnapshot.val().username;
 
-            		//console.log(observation_array);
-            		console.log(observation_array.slice(-3));
+	        		observation_array.push(observation_id);
 
-            	});
-            });
+					firebase.database().ref("speciesid/observations").once("value").then(function(snapshot) {
+
+						var observation_id = childSnapshot.getKey();
+
+		        		if (observation_array[observation_array.length-1] == observation_id) {
+
+		        			observation_1.textContent = species_name;
+		        			observation_1_name.textContent = username;
+
+			        		var storage = firebase.storage();
+				            var storageRef = storage.ref();
+				            var tangRef = storageRef.child('observations/' + observation_id + '.jpg');
+
+				           	tangRef.getDownloadURL().then(function(url) {
+				                document.getElementById('observation_1_img').src = url;
+				            })
+
+		        		}
+					});
+
+					firebase.database().ref("speciesid/observations").once("value").then(function(snapshot) {
+
+						var observation_id = childSnapshot.getKey();
+
+		        		if (observation_array[observation_array.length-2] == observation_id) {
+
+		        			observation_2.textContent = species_name;
+		        			observation_2_name.textContent = username;
+
+			        		var storage = firebase.storage();
+				            var storageRef = storage.ref();
+				            var tangRef = storageRef.child('observations/' + observation_id + '.jpg');
+
+				           	tangRef.getDownloadURL().then(function(url) {
+				                document.getElementById('observation_2_img').src = url;
+				            })
+
+		        		}
+					});
+
+					firebase.database().ref("speciesid/observations").once("value").then(function(snapshot) {
+
+						var observation_id = childSnapshot.getKey();
+
+		        		if (observation_array[observation_array.length-3] == observation_id) {
+
+		        			observation_3.textContent = species_name;
+		        			observation_3_name.textContent = username;
+
+			        		var storage = firebase.storage();
+				            var storageRef = storage.ref();
+				            var tangRef = storageRef.child('observations/' + observation_id + '.jpg');
+
+				           	tangRef.getDownloadURL().then(function(url) {
+				                document.getElementById('observation_3_img').src = url;
+				            })
+
+		        		}
+					});
+
+
+	        		console.log(observation_array[observation_array.length-2]);
+
+	        	});
+	        });
 
         }
 
@@ -454,9 +530,9 @@
 
         <div id="show_recent_observations" style="clear:both;">
 			<div id="container_obs">
-				<h3><span id="observation_1" class="columnh2_obs">Obs 1</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
-				<h3><span id="observation_2" class="columnh2_obs">Obs 2</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
-				<h3><span id="observation_3" class="columnh2_obs">Obs 3</span><img class="img_obs" src="http://lorempixel.com/80/80" border="0" width="80" height="80"/></h3>
+				<h3><span id="observation_1" class="columnh2_obs"></span><img id="observation_1_img" class="img_obs" border="0" width="80" height="80"/><br/><br/><br/><br/><br/><span id="observation_1_name" class="columnh2_obs"></span></h3>
+				<h3><span id="observation_2" class="columnh2_obs"></span><img id="observation_2_img" class="img_obs" border="0" width="80" height="80"/><br/><br/><br/><br/><br/><span id="observation_2_name" class="columnh2_obs"></span></h3>
+				<h3><span id="observation_3" class="columnh2_obs"></span><img id="observation_3_img" class="img_obs" border="0" width="80" height="80"/><br/><br/><br/><br/><br/><span id="observation_3_name" class="columnh2_obs"></span></h3>
 			</div>
         </div>
 
