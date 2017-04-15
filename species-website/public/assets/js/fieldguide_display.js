@@ -149,10 +149,24 @@ setInterval(function() {
                 document.querySelector('img').src = url;
             })
             document.getElementById('inflorescence_div').style.display = 'block';
+            document.getElementById('display_inflorescence').style.display = 'block';
+            document.getElementById('display_inflorescence_main').style.display = 'block';
+
             document.getElementById('leaf_blade_div').style.display = 'block';
+            document.getElementById('display_leaf_blade').style.display = 'block';
+            document.getElementById('display_leaf_blade_main').style.display = 'block';
+
             document.getElementById('spike_color_div').style.display = 'block';
+            document.getElementById('display_spike_color').style.display = 'block';
+            document.getElementById('display_spike_color_main').style.display = 'block';
+
             document.getElementById('stem_cross_section_div').style.display = 'block';
+            document.getElementById('display_stem_cross_section').style.display = 'block';
+            document.getElementById('display_stem_cross_section_main').style.display = 'block';
+
             document.getElementById('habitat_div').style.display = 'block';
+            document.getElementById('display_habitat').style.display = 'block';
+            document.getElementById('display_habitat_main').style.display = 'block';
 
             /* Graminoids (Cyperaceae) No Show*/
             document.getElementById('flower_color_div').style.display = 'none';
@@ -186,8 +200,16 @@ setInterval(function() {
                 document.querySelector('img').src = url;
             })
             document.getElementById('leaf_blade_div').style.display = 'block';
+            document.getElementById('display_leaf_blade').style.display = 'block';
+            document.getElementById('display_leaf_blade_main').style.display = 'block';
+
             document.getElementById('stem_cross_section_div').style.display = 'block';
+            document.getElementById('display_stem_cross_section').style.display = 'block';
+            document.getElementById('display_stem_cross_section_main').style.display = 'block';
+
             document.getElementById('habitat_div').style.display = 'block';
+            document.getElementById('display_habitat').style.display = 'block';
+            document.getElementById('display_habitat_main').style.display = 'block';
 
             /* Graminoids (Juncaceae) No Show */
             document.getElementById('spike_color_div').style.display = 'none';
@@ -223,11 +245,28 @@ setInterval(function() {
                 document.querySelector('img').src = url;
             })
             document.getElementById('awns_div').style.display = 'block';
+            document.getElementById('display_awns').style.display = 'block';
+            document.getElementById('display_awns_main').style.display = 'block';
+
             document.getElementById('florets_per_spikelet_div').style.display = 'block';
+            document.getElementById('display_florets_per_spikelet').style.display = 'block';
+            document.getElementById('display_florets_per_spikelet_main').style.display = 'block';
+
             document.getElementById('inflorescence_div').style.display = 'block';
+            document.getElementById('display_inflorescence').style.display = 'block';
+            document.getElementById('display_inflorescence_main').style.display = 'block';
+
             document.getElementById('leaf_blade_div').style.display = 'block';
+            document.getElementById('display_leaf_blade').style.display = 'block';
+            document.getElementById('display_leaf_blade_main').style.display = 'block';
+
             document.getElementById('stem_cross_section_div').style.display = 'block';
+            document.getElementById('display_stem_cross_section').style.display = 'block';
+            document.getElementById('display_stem_cross_section_main').style.display = 'block';
+
             document.getElementById('habitat_div').style.display = 'block';
+            document.getElementById('display_habitat').style.display = 'block';
+            document.getElementById('display_habitat_main').style.display = 'block';
 
             /* Graminoids (Poaceae) No Show */
             document.getElementById('spike_color_div').style.display = 'none';
@@ -252,10 +291,24 @@ setInterval(function() {
 
             /* Woodys (Deciduous) Show */
             document.getElementById('cone_div').style.display = 'block';
+            document.getElementById('display_cone').style.display = 'block';
+            document.getElementById('display_cone_main').style.display = 'block';
+
             document.getElementById('leaf_arrangement_div').style.display = 'block';
+            document.getElementById('display_leaf_arrangement').style.display = 'block';
+            document.getElementById('display_leaf_arrangement_main').style.display = 'block';
+
             document.getElementById('leaf_margin_div').style.display = 'block';
+            document.getElementById('display_leaf_margin').style.display = 'block';
+            document.getElementById('display_leaf_margin_main').style.display = 'block';
+
             document.getElementById('leaf_shape_div').style.display = 'block';
+            document.getElementById('display_leaf_shape').style.display = 'block';
+            document.getElementById('display_leaf_shape_main').style.display = 'block';
+
             document.getElementById('leaf_type_div').style.display = 'block';
+            document.getElementById('display_leaf_type').style.display = 'block';
+            document.getElementById('display_leaf_type_main').style.display = 'block';
 
             /* Woodys (Deciduous) No Show */
             document.getElementById('spike_color_div').style.display = 'none';
@@ -279,10 +332,24 @@ setInterval(function() {
 
             /* Woodys (Needle) Show */
             document.getElementById('cone_div').style.display = 'block';
+            document.getElementById('display_cone').style.display = 'block';
+            document.getElementById('display_cone_main').style.display = 'block';
+
             document.getElementById('needle_apex_div').style.display = 'block';
+            document.getElementById('display_needle_apex').style.display = 'block';
+            document.getElementById('display_needle_apex_main').style.display = 'block';
+
             document.getElementById('needle_arrangement_div').style.display = 'block';
+            document.getElementById('display_needle_arrangement').style.display = 'block';
+            document.getElementById('display_needle_arrangement_main').style.display = 'block';
+
             document.getElementById('needle_per_fascile_div').style.display = 'block';
+            document.getElementById('display_needle_per_fascile').style.display = 'block';
+            document.getElementById('display_needle_per_fascile_main').style.display = 'block';
+
             document.getElementById('leaf_type_div').style.display = 'block';
+            document.getElementById('display_leaf_type_div').style.display = 'block';
+            document.getElementById('display_leaf_type_div_main').style.display = 'block';
 
             /* Woodys (Needle) No Show */
             document.getElementById('spike_color_div').style.display = 'none';
