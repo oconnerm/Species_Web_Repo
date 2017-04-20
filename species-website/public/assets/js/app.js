@@ -387,7 +387,7 @@
           check_mark2.classList.remove('hide');
         }
         if (snapshot.val().researcher == 3){
-          user_status.textContent = "Account: Reseacher";
+          user_status.textContent = "Account: Researcher";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
         }
