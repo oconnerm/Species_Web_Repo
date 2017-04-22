@@ -178,6 +178,8 @@
               recent_observations.classList.remove('hide');
               no_observations.classList.remove('hide');
 
+              alert("Verification sent");
+
             } else {
 
               alert("This user is not a researcher");
@@ -371,7 +373,7 @@
 
         // TODO: Check marks to show verification progress
 
-        if (snapshot.val().researcher == 0) {
+        if (snapshot.val().researcher <= 0) {
           user_status.textContent = "Account: User";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
@@ -386,7 +388,7 @@
           check_mark.classList.remove('hide');
           check_mark2.classList.remove('hide');
         }
-        if (snapshot.val().researcher == 3){
+        if (snapshot.val().researcher >= 3){
           user_status.textContent = "Account: Researcher";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
