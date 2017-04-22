@@ -424,9 +424,9 @@
             </ul>
         </div>
 
-        <button id="btnDownload" class="btn btn-action" style="height:32px;width:120px">Download CSV</button>-->
+        <button id="btnDownload" class="btn btn-action" style="height:32px;width:120px">Download CSV</button>
         <h2></h2>
-
+        <button id="btnRemove" onclick="removeAll()" class="btn btn-action" style="height:32px; width:100%">Remove All Filters</button>
         <div class="field_guide_section">
             <iframe id="left_frame" src="fieldguide_data.html" style="height:550px;width:50%;"></iframe>
             <iframe id="right_frame" src="fieldguide_display.html" style="height:550px;width:50%;"></iframe>
@@ -484,6 +484,14 @@
 
     <script src="assets/js/fieldguide.js"></script>
     <script>
+        function removeAll() {
+            document.getElementById("change").textContent = 'true'
+            document.getElementById("category").textContent = "N/A"
+            document.getElementById("subcat").textContent = "63"
+            document.getElementById("fil").textContent = "63"
+            document.getElementById("cat2").textContent = "N/A"
+        }
+
         function shower() {   
             document.getElementById("myDropdown").classList.toggle("show");
         }

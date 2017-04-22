@@ -509,7 +509,7 @@ setInterval(function() {
         var par_subcat_array = par_subcat.split(',');
         var par_fil_array = par_fil.split(',');
         var the_length = par_subcat_array.length;
-        if (par_category.textContent == "Forbs") {
+        if (par_category.textContent == "Forbs" || par_category.textContent == "N/A") {
             var forbs_query = firebase.database().ref("speciesid/field_guide/forbs").orderByKey();
             forbs_query.once("value")
                 .then(function(snapshot) {
@@ -530,7 +530,7 @@ setInterval(function() {
                         var growthFormName = childSnapshot.val().growth_form;
                         var habitatName = childSnapshot.val().habitat;
                         var plantcode = childSnapshot.val().plant_code;
-                        var ryanmidigatearray = [flowerColorName, flowerShapeName, leafArrangementName, leafShapeFilterName, petalNumberName, familyName, growthFormName]
+                        var ryanmidigatearray = [flowerColorName, flowerShapeName, leafArrangementName, leafShapeFilterName, petalNumberName, familyName, growthFormName, '63']
                         var habitatNameArray = habitatName.split(',')
                         var testarray = [];
                         var habitatNameArraylen = habitatNameArray.length;
@@ -586,8 +586,8 @@ setInterval(function() {
 
                 });
         };
-        if (par_category.textContent === "Gram") {
-            if (par_cat2.textContent === "cyperaceae") {
+        if (par_category.textContent === "Gram" || par_category.textContent == "N/A") {
+            if (par_cat2.textContent === "cyperaceae" || par_cat2.textContent === "N/A") {
                 var graminoids_query_one = firebase.database().ref("speciesid/field_guide/graminoids/cyperaceae").orderByKey();
                 graminoids_query_one.once("value")
                     .then(function(snapshot) {
@@ -607,7 +607,7 @@ setInterval(function() {
                             var spikeColorName = childSnapshot.val().spike_color;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, inflorescenceName, leafBladeName, spikeColorName, stemCrossSectionName]
+                            var ryanmidigatearray = [familyName, growthFormName, inflorescenceName, leafBladeName, spikeColorName, stemCrossSectionName, '63']
                             var valid = true;
                             var habitatNameArray = habitatName.split(',')
                             var testarray = [];
@@ -660,7 +660,7 @@ setInterval(function() {
 
                     });
             }
-            if (par_cat2.textContent === "juncaceae" || par_cat2.textContent == 'NA') {
+            if (par_cat2.textContent === "juncaceae" || par_cat2.textContent == 'N/A') {
                 var graminoids_query_two = firebase.database().ref("speciesid/field_guide/graminoids/juncaceae").orderByKey();
                 graminoids_query_two.once("value")
                     .then(function(snapshot) {
@@ -678,7 +678,7 @@ setInterval(function() {
                             var leafBladeName = childSnapshot.val().leaf_blade;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName]
+                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName, '63']
                             var valid = true;
                             var habitatNameArray = habitatName.split(',')
                             var testarray = [];
@@ -729,7 +729,7 @@ setInterval(function() {
 
                     });
             }
-            if (par_cat2.textContent === "poaceae") {
+            if (par_cat2.textContent === "poaceae" || par_cat2.textContent === "N/A") {
                 var graminoids_query_three = firebase.database().ref("speciesid/field_guide/graminoids/poaceae").orderByKey();
                 graminoids_query_three.once("value")
                     .then(function(snapshot) {
@@ -750,7 +750,7 @@ setInterval(function() {
                             var leafBladeName = childSnapshot.val().leaf_blade;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName, awnsName, floretsPerSpikeletName]
+                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName, awnsName, floretsPerSpikeletName, '63']
                             var habitatNameArray = habitatName.split(',')
                             var testarray = [];
                             var habitatNameArraylen = habitatNameArray.length;
@@ -806,8 +806,8 @@ setInterval(function() {
                     });
             }
         }
-        if (par_category.textContent === "Woody") {
-            if (par_cat2.textContent === "decuduous") {
+        if (par_category.textContent === "Woody" || par_category.textContent === "N/A") {
+            if (par_cat2.textContent === "decuduous" || par_cat2.textContent === "N/A") {
                 var woody_query_one = firebase.database().ref("speciesid/field_guide/woody/deciduous").orderByKey();
                 woody_query_one.once("value")
                     .then(function(snapshot) {
@@ -827,7 +827,7 @@ setInterval(function() {
                             var leafMarginName = childSnapshot.val().leaf_margin;
                             var leafShapeName = childSnapshot.val().leaf_shape;
                             var leafTypeName = childSnapshot.val().leaf_type;
-                            var ryanmidigatearray = [familyName, growthFormName, leafMarginName, leafShapeName, leafTypeName, leafArrangementName, coneName]
+                            var ryanmidigatearray = [familyName, growthFormName, leafMarginName, leafShapeName, leafTypeName, leafArrangementName, coneName, '63']
                             var valid = true;
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
@@ -873,7 +873,7 @@ setInterval(function() {
 
                     });
             }
-            if (par_cat2.textContent === "needle") {
+            if (par_cat2.textContent === "needle" || par_cat2.textContent === "N/A") {
                 var woody_query_two = firebase.database().ref("speciesid/field_guide/woody/needle").orderByKey();
                 woody_query_two.once("value")
                     .then(function(snapshot) {
@@ -893,7 +893,7 @@ setInterval(function() {
                             var needleArrangementName = childSnapshot.val().needle_arrangement;
                             var needlePerFascileName = childSnapshot.val().needle_per_fascile;
                             var leafTypeName = childSnapshot.val().leaf_type;
-                            var ryanmidigatearray = [familyName, growthFormName, needleApexName, needleArrangementName, leafTypeName, needlePerFascileName, coneName]
+                            var ryanmidigatearray = [familyName, growthFormName, needleApexName, needleArrangementName, leafTypeName, needlePerFascileName, coneName, '63']
                             var valid = true;
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
