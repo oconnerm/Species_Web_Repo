@@ -742,7 +742,7 @@
 		function create_zip() {
 
             var download_dictionary = [];
-            var obervations_counter = 1;
+            var obervations_counter = 0;
 
 			obs_database.once("value").then(function(snapshot) {
 	            snapshot.forEach(function(childSnapshot) {
@@ -759,6 +759,8 @@
 					var username = childSnapshot.val().username;
 	            	var comments = childSnapshot.val().comments;
 
+
+
 	            	download_dictionary[obervations_counter] = "Species Name,Plant Code,Datetime,GPS Latitude,GPS Longitude,Verification,Username,Comments \n"+ species_name + ',' + plant_code + ',' + datetime + ',' + gps_lat + ',' + gps_long + ',' + is_verified + ',' + username + ',' + comments;
 
 	            	obervations_counter = obervations_counter + 1;
@@ -766,7 +768,8 @@
 	            });
 	        });
 
-	        //console.log(download_dictionary);
+
+	        console.log(download_dictionary);
 
 	        //akjsdfhklasjdhflkasjdhflkkajhsdflkjahsdlfk
 
@@ -782,7 +785,7 @@
 			console.log(array);
 */			var zip = new JSZip();
 			for ( var i = 0; i < download_dictionary.length; i++ ) {
-				var temp = download_dictionary[i]
+				var temp = download_dictionary[i];
 				zip.file("Observation" + i + ".txt", temp); 
 
 			}
