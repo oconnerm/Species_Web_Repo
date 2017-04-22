@@ -625,16 +625,32 @@ setInterval(function() {
                             var spikeColorName = childSnapshot.val().spike_color;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, inflorescenceName, leafBladeName, spikeColorName, stemCrossSectionName, '63']
+                            var ryanmidigatearray = [familyName, growthFormName, inflorescenceName, stemCrossSectionName, '63']
                             var valid = true;
                             var habitatNameArray = habitatName.split(',')
+                            var spikeColorNameArray = spikeColorName.split(',')
+                            var leafBladeNameArray = leafBladeName.split(',')
                             var testarray = [];
                             var habitatNameArraylen = habitatNameArray.length;
+                            var scnan = spikeColorNameArray.length
+                            var lbna = leafBladeNameArray.length
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
                             }
 
                             ryanmidigatearray = ryanmidigatearray.concat(testarray)
+                            for (var t = 0; t < scnan; t++) {
+                                testarray[t] = spikeColorNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+
+                            for (var t = 0; t < lbna; t++) {
+                                testarray[t] = leafBladeNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
                                 var filtprop = par_fil_array[i]
@@ -696,16 +712,24 @@ setInterval(function() {
                             var leafBladeName = childSnapshot.val().leaf_blade;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName, '63']
+                            var ryanmidigatearray = [familyName, growthFormName, stemCrossSectionName, '63']
                             var valid = true;
                             var habitatNameArray = habitatName.split(',')
+                            var leafBladeNameArray = leafBladeName.split(',')
                             var testarray = [];
                             var habitatNameArraylen = habitatNameArray.length;
+                            var lbna = leafBladeNameArray.length;
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
                             }
 
                             ryanmidigatearray = ryanmidigatearray.concat(testarray)
+                            for (var t = 0; t < lbna; t++) {
+                                testarray[t] = leafBladeNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
                                 var filtprop = par_fil_array[i]
@@ -768,12 +792,27 @@ setInterval(function() {
                             var leafBladeName = childSnapshot.val().leaf_blade;
                             var stemCrossSectionName = childSnapshot.val().stem_cross_section;
                             var habitatName = childSnapshot.val().habitat;
-                            var ryanmidigatearray = [familyName, growthFormName, leafBladeName, stemCrossSectionName, awnsName, floretsPerSpikeletName, inflorescenceName, '63']
+                            var ryanmidigatearray = [familyName, growthFormName, stemCrossSectionName, awnsName, floretsPerSpikeletName, inflorescenceName, '63']
                             var habitatNameArray = habitatName.split(',')
+                            var leafBladeNameArray = leafBladeName.split(',')
+                            var awnsNameArray = awnsName.split(',')
                             var testarray = [];
                             var habitatNameArraylen = habitatNameArray.length;
+                            var lbna = leafBladeNameArray.length
+                            var ana = awnsNameArray.length
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+
+                            for (var t = 0; t < lbna; t++) {
+                                testarray[t] = leafBladeNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+                            for (var t = 0; t < ana; t++) {
+                                testarray[t] = awnsNameArray[t].trim()
                             }
 
                             ryanmidigatearray = ryanmidigatearray.concat(testarray)
@@ -825,7 +864,7 @@ setInterval(function() {
             }
         }
         if (par_category.textContent === "Woody" || par_category.textContent === "N/A") {
-            if (par_cat2.textContent === "decuduous" || par_cat2.textContent === "N/A") {
+            if (par_cat2.textContent === "deciduous" || par_cat2.textContent === "N/A") {
                 var woody_query_one = firebase.database().ref("speciesid/field_guide/woody/deciduous").orderByKey();
                 woody_query_one.once("value")
                     .then(function(snapshot) {
@@ -845,8 +884,10 @@ setInterval(function() {
                             var leafMarginName = childSnapshot.val().leaf_margin;
                             var leafShapeName = childSnapshot.val().leaf_shape;
                             var leafTypeName = childSnapshot.val().leaf_type;
-                            var ryanmidigatearray = [familyName, growthFormName, leafMarginName, leafShapeName, leafTypeName, leafArrangementName, coneName, '63']
+                            var ryanmidigatearray = [familyName, growthFormName, leafMarginName, leafShapeName, leafTypeName, leafArrangementName, '63']
                             var valid = true;
+
+
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
                                 var filtprop = par_fil_array[i]
@@ -911,8 +952,18 @@ setInterval(function() {
                             var needleArrangementName = childSnapshot.val().needle_arrangement;
                             var needlePerFascileName = childSnapshot.val().needle_per_fascile;
                             var leafTypeName = childSnapshot.val().leaf_type;
-                            var ryanmidigatearray = [familyName, growthFormName, needleApexName, needleArrangementName, leafTypeName, needlePerFascileName, coneName, '63']
+                            var ryanmidigatearray = [familyName, growthFormName, needleApexName, needleArrangementName, leafTypeName, needlePerFascileName, '63']
                             var valid = true;
+                            var testarray = []
+                            var coneNameArray = coneName.split(',')
+                            var cna = coneNameArray.length
+
+                            for (var t = 0; t < cna; t++) {
+                                testarray[t] = coneNameArray[t].trim()
+                            }
+
+                            ryanmidigatearray = ryanmidigatearray.concat(testarray)
+
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
                                 var filtprop = par_fil_array[i]
