@@ -741,7 +741,7 @@
 
 		function create_zip() {
 
-            var download_dictionary = {};
+            var download_dictionary = [];
             var obervations_counter = 1;
 
 			obs_database.once("value").then(function(snapshot) {
@@ -759,7 +759,7 @@
 					var username = childSnapshot.val().username;
 	            	var comments = childSnapshot.val().comments;
 
-	            	download_dictionary["Observation_"+obervations_counter] = { "Species Name": species_name, "Plant Code": plant_code,"Datetime": datetime, "GPS Latitude": gps_lat, "GPS Longitude": gps_long, "Verification": is_verified, "Username": username, "Comments": comments };
+	            	download_dictionary[obervations_counter] = "Species Name,Plant Code,Datetime,GPS Latitude,GPS Longitude,Verification,Username,Comments \n"+ species_name + ',' + plant_code + ',' + datetime + ',' + gps_lat + ',' + gps_long + ',' + is_verified + ',' + username + ',' + comments;
 
 	            	obervations_counter = obervations_counter + 1;
 
@@ -770,6 +770,7 @@
 
 	        //akjsdfhklasjdhflkasjdhflkkajhsdflkjahsdlfk
 
+/*
 	        console.log(download_dictionary);
 	        object1 = JSON.stringify(download_dictionary);
 	        console.log(object1);
@@ -779,6 +780,16 @@
 		    });
 
 			console.log(array);
+*/			var zip = new JSZip();
+			for ( var i = 0; i > download_dictionary.length; i++ ) {
+				var temp = download_dictionary[i]
+				zip.file("Observation.txt", temp); 
+
+			}
+
+			zip.generateAsync({type:"blob"}).then(function(content) {
+			    saveAs(content, "exmaple.zip");
+			});
 
 /*
 			var imgData = 'R0lGODlhAAEwAMQAAJ2M5Me98GRK1DoYyYBr3PHv++Pe99XO81Y50auc6PBkZEgpzbmt7HJa2I57';
