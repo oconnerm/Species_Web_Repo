@@ -781,9 +781,9 @@
 
 			console.log(array);
 */			var zip = new JSZip();
-			for ( var i = 0; i > download_dictionary.length; i++ ) {
+			for ( var i = 0; i < download_dictionary.length; i++ ) {
 				var temp = download_dictionary[i]
-				zip.file("Observation.txt", temp); 
+				zip.file("Observation" + i + ".txt", temp); 
 
 			}
 
