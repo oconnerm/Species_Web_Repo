@@ -290,6 +290,14 @@ setInterval(function() {
         if (display_leaf_type2.textContent == 'deciduous') {
 
             /* Woodys (Deciduous) Show */
+            var storage = firebase.storage();
+            var storageRef = storage.ref();
+            var plant_code = parent.document.getElementById("plant_code").innerHTML
+            var tangRef = storageRef.child('field_guide/tree_shrubs_photos/' + plant_code + '.jpg');
+
+            tangRef.getDownloadURL().then(function(url) {
+                document.querySelector('img').src = url;
+            })
             document.getElementById('cone_div').style.display = 'block';
             document.getElementById('display_cone').style.display = 'block';
             document.getElementById('display_cone_main').style.display = 'block';
@@ -331,6 +339,14 @@ setInterval(function() {
         if (display_leaf_type2.textContent == 'needle') {
 
             /* Woodys (Needle) Show */
+            var storage = firebase.storage();
+            var storageRef = storage.ref();
+            var plant_code = parent.document.getElementById("plant_code").innerHTML
+            var tangRef = storageRef.child('field_guide/tree_shrubs_photos/' + plant_code + '.jpg');
+
+            tangRef.getDownloadURL().then(function(url) {
+                document.querySelector('img').src = url;
+            })
             document.getElementById('cone_div').style.display = 'block';
             document.getElementById('display_cone').style.display = 'block';
             document.getElementById('display_cone_main').style.display = 'block';
@@ -348,8 +364,7 @@ setInterval(function() {
             document.getElementById('display_needle_per_fascile_main').style.display = 'block';
 
             document.getElementById('leaf_type_div').style.display = 'block';
-            document.getElementById('display_leaf_type_div').style.display = 'block';
-            document.getElementById('display_leaf_type_div_main').style.display = 'block';
+
 
             /* Woodys (Needle) No Show */
             document.getElementById('spike_color_div').style.display = 'none';
