@@ -100,10 +100,6 @@ a:focus {
     margin-top: -1px;
 }
 
-.dropdown-submenu:hover { float: none; }
-.dropdown-menu:hover { float: none; }
-
-
 /*	################################################################
 	BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
