@@ -1012,5 +1012,5 @@ setInterval(function() {
             }
         }
     }
-        document.body.style.background = "#384452 url('assets/img/apple.png')";
+
 }, 500);
