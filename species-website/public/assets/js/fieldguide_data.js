@@ -1,24 +1,4 @@
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-*/
+// On load, set up the entire list of items. 
 (function() {
 
 
@@ -354,7 +334,7 @@ window.onclick = function(event) {
         });
 
 }());
-
+// Running every so often (every 500 ms), update based on values. 
 setInterval(function() {
     if (parent.document.getElementById("change").textContent == "true") {
 
@@ -362,121 +342,6 @@ setInterval(function() {
         document.body.style.backgroundColor = "#384452";
         parent.document.getElementById("change").textContent = 'false'
 
-        //alert(display_species);
-
-        /*
-
-                  <h2 id="display_species" style="visibility: hidden;">Achillea millefolium<h2>
-                  <h2 id="display_common_name" style="visibility: hidden;">Garret common yarrow<h2>
-                  <h2 id="display_family_name" style="visibility: hidden;">Asteraceae<h2>
-                  <h2 id="display_synonyms" style="visibility: hidden;">Achillea lanulosa<h2>
-                  <h3 id="display_growth_form" style="visibility: hidden;">forb<h2>
-                  <h3 id="display_folower_color" style="visibility: hidden;">white<h2>
-                  <h3 id="display_flower_shape" style="visibility: hidden;">composite<h2>
-                  <h3 id="display_habitat" style="visibility: hidden;">dry meadow and wet meadow<h2>
-                  <h3 id="display_leaf_arrangment" style="visibility: hidden;">alternate<h2>
-                  <h3 id="display_leaf_shape" style="visibility: hidden;">other<h2>
-                  <h3 id="display_petal_number" style="visibility: hidden;">NA<h2>
-                  <h4 id="display_notes" style="visibility: hidden;">NA<h2>
-                  <h4 id="display_photo_credit" style="visibility: hidden;">JG Smith<h2>
-
-        */
-
-        /*
-
-          ALL
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCredit = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-
-          Forbs
-          var flowerColorName = childSnapshot.val().flower_color;
-          var flowerShapeName = childSnapshot.val().flower_shape;
-          var leafArrangementName = childSnapshot.val().leaf_arrangement;
-          var leafShapeFilterName = childSnapshot.val().leaf_shape_filter;
-          var petalNumberName = childSnapshot.val().petal_number;
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCreditName = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthFormName = childSnapshot.val().growth_form;
-          var habitatName = childSnapshot.val().habitat;
-
-          Graminoids - cyperaceae
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCredit = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthForm = childSnapshot.val().growth_form;
-          var inflorescenceName = childSnapshot.val().inflorescence;
-          var leafBladeName = childSnapshot.val().leaf_blade;
-          var spikeColorName = childSnapshot.val().spike_color;
-          var stemCrossSectionName = childSnapshot.val().stem_cross_section;
-          var habitatName = childSnapshot.val().habitat;
-
-          Graminoids - juncaceae
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCredit = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthForm = childSnapshot.val().growth_form;
-          var leafBladeName = childSnapshot.val().leaf_blade;
-          var stemCrossSectionName = childSnapshot.val().stem_cross_section;
-          var habitatName = childSnapshot.val().habitat;
-
-          Graminoids - Poaceae
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCredit = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthForm = childSnapshot.val().growth_form;
-          var awnsName = childSnapshot.val().awns;
-          var floretsPerSpikeletName = childSnapshot.val().florets_per_spikelet;
-          var inflorescenceName = childSnapshot.val().inflorescence;
-          var leafBladeName = childSnapshot.val().leaf_blade;
-          var stemCrossSectionName = childSnapshot.val().stem_cross_section;
-          var habitatName = childSnapshot.val().habitat;
-
-          Woodys - deciduous
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCreditName = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthFormName = childSnapshot.val().growth_form;
-          var coneName = childSnapshot.val().cone;
-          var leafArrangementName = childSnapshot.val().leaf_arrangement;
-          var leafMarginName = childSnapshot.val().leaf_margin;
-          var leafShapeName = childSnapshot.val().leaf_shape;
-          var leafTypeName = childSnapshot.val().leaf_type;
-
-          Woodys - Needle
-          var speciesName = childSnapshot.val().species_name;
-          var commonName = childSnapshot.val().common_name;
-          var familyName = childSnapshot.val().family_name;
-          var notesName = childSnapshot.val().notes;
-          var photoCreditName = childSnapshot.val().photo_credit;
-          var synonymsName = childSnapshot.val().synonyms;
-          var growthFormName = childSnapshot.val().growth_form;
-          var coneName = childSnapshot.val().cone;
-          var needleApexName = childSnapshot.val().needle_apex;
-          var needleArrangementName = childSnapshot.val().needle_arrangement;
-          var needlePerFascileName = childSnapshot.val().needle_per_fascile;
-          var leafTypeName = childSnapshot.val().leaf_type;
-
-        */
         var dis_plant_code = parent.document.getElementById("plant_code")
         var display_species = parent.document.getElementById("display_species");
         var display_common_name = parent.document.getElementById("display_common_name");
@@ -518,6 +383,7 @@ setInterval(function() {
                     snapshot.forEach(function(childSnapshot) {
 
                         /* Forbs */
+                        // ryanmidigationarray is there to hold the values so that we can seach over everything and apply the filters.
                         var flowerColorName = childSnapshot.val().flower_color;
                         var flowerShapeName = childSnapshot.val().flower_shape;
                         var leafArrangementName = childSnapshot.val().leaf_arrangement;
@@ -542,6 +408,7 @@ setInterval(function() {
                         var cnan = colorNameAray.length;
                         var pnnan = petalNumberNameArray.length;
                         var lana = leafArrangementNameArray.length;
+                        // Very ugly code to put each multi-entry into the array properly. 
                         for (var t = 0; t < habitatNameArraylen; t++) {
                             testarray[t] = habitatNameArray[t].trim()
                         }
@@ -561,6 +428,7 @@ setInterval(function() {
                         }
                         ryanmidigatearray = ryanmidigatearray.concat(testarray)
                         var valid = true;
+                        // Check if any filter currently doesn't match, change valid to false if it doesn't match
                         for (var i = 0; i < the_length; i++) {
                             var filtname = par_subcat_array[i]
                             var filtprop = par_fil_array[i]
@@ -572,6 +440,7 @@ setInterval(function() {
                             }
 
                         }
+                        // show entries that match filters.
                         if (valid) {
                             var h6 = document.createElement('h6');
                             var text = document.createTextNode(speciesName);
@@ -636,6 +505,7 @@ setInterval(function() {
                             var habitatNameArraylen = habitatNameArray.length;
                             var scnan = spikeColorNameArray.length
                             var lbna = leafBladeNameArray.length
+                                // same as fobs
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
                             }
@@ -721,6 +591,7 @@ setInterval(function() {
                             var testarray = [];
                             var habitatNameArraylen = habitatNameArray.length;
                             var lbna = leafBladeNameArray.length;
+                            // same as forbs
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
                             }
@@ -802,6 +673,7 @@ setInterval(function() {
                             var habitatNameArraylen = habitatNameArray.length;
                             var lbna = leafBladeNameArray.length
                             var ana = awnsNameArray.length
+                                // same as forbs
                             for (var t = 0; t < habitatNameArraylen; t++) {
                                 testarray[t] = habitatNameArray[t].trim()
                             }
@@ -888,7 +760,7 @@ setInterval(function() {
                             var leafTypeName = childSnapshot.val().leaf_type;
                             var ryanmidigatearray = [familyName, growthFormName, leafMarginName, leafShapeName, leafTypeName, leafArrangementName, '63']
                             var valid = true;
-
+                            // same as forbs
 
                             for (var i = 0; i < the_length; i++) {
                                 var filtname = par_subcat_array[i]
@@ -959,7 +831,7 @@ setInterval(function() {
                             var testarray = []
                             var coneNameArray = coneName.split(',')
                             var cna = coneNameArray.length
-
+                                // same as forbs 
                             for (var t = 0; t < cna; t++) {
                                 testarray[t] = coneNameArray[t].trim()
                             }

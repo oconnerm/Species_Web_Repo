@@ -42,7 +42,7 @@
 </head>
 
 <body>
-
+    <!-- Top Menu -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -153,7 +153,7 @@
                     clear: both;
                 }
             </style>
-
+            <!-- Filter buttons -->
             <ul id="myDropdown" class="main-navigation">
                 <li>
                     <a tableindex="-1" href="javascript:forbFilter('63','63');">Forbs</a>
@@ -498,7 +498,7 @@
                 <li> <a href="javascript:removeAll();"> Remove All Filters </a> </li>
             </ul>
         </div>
-
+        <!-- Iframes control each side, hidden values are used to dynamically change things -->
         <div class="field_guide_section">
             <iframe id="left_frame" src="fieldguide_data.html" style="height:550px;width:50%;"></iframe>
             <iframe id="right_frame" src="fieldguide_display.html" style="height:550px;width:50%;"></iframe>
@@ -539,7 +539,7 @@
 
 
     </div>
-
+    <!-- firebase and jquery set up -->
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script>
@@ -555,6 +555,7 @@
     </script>
 
     <script src="assets/js/fieldguide.js"></script>
+    <!-- removeAll resets the filters, xFilter sets up the filter list as well as set up the attributes to apply filters. -->
     <script>
         function removeAll() {
             document.getElementById("change").textContent = 'true'
@@ -568,7 +569,6 @@
         function shower() {   
             document.getElementById("myDropdown").classList.toggle("show");
         }
-
 
         function forbFilter(subcat, fil) {
             document.getElementById("change").textContent = 'true'
