@@ -364,23 +364,23 @@
       var user_name_query = firebase.database().ref("speciesid/accounts/").child(firebaseUser.uid);
 
       user_name_query.once('value').then(function(snapshot) {
-        welcome_txt.textContent = "Welcome back " + snapshot.val().username + "!";
+        welcome_txt.textContent = "Welcome " + snapshot.val().username + "!";
         user_email.textContent = "Email: " + firebaseUser.email;
 
         // TODO: Check marks to show verification progress
 
         if (snapshot.val().researcher <= 0) {
-          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
+          user_status.textContent = "Account: User (Get 3 Verification Checks to be a Researcher!)";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
         }
         if (snapshot.val().researcher == 1) {
-          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
+          user_status.textContent = "Account: User (Get 2 more Verification Checks to be a Researcher!)";
           check_mark.classList.remove('hide');
           check_mark2.classList.add('hide');
         }
         if (snapshot.val().researcher == 2) {
-          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
+          user_status.textContent = "Account: User (Get 1 Verification Check to be a Researcher!)";
           check_mark.classList.remove('hide');
           check_mark2.classList.remove('hide');
         }
