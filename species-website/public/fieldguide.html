@@ -72,13 +72,14 @@
 	 ***************************************************************************************************************** -->
     <div id="twrap">
 
-        <h1>Field Guide</h1>
+        <h1 style="text-shadow: 2px 2px #000000;color:#dddddd;">Field Guide</h1>
 
 
         <div class="dropdown">
             <button class="btn btn-action" onclick="shower()" type="button" data-toggle="dropdown" style="height:32px;width:200px"> Filters
-	<span class="caret"></span></button>
-            <ul id="myDropdown" class="dropdown-menu">
+	       </button>
+         <button id="btnRemove" onclick="removeAll()" class="btn btn-action" style="height:32px; width:200px">Remove All Filters</button>
+            <ul id="myDropdown" class="dropdown-menu" >
                 <li class="dropdown-submenu">
                     <a class="test" tableindex="-1" href="#"> Forbs <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -424,8 +425,8 @@
 
 
         <h2></h2>
-        <h2 id="filtersss"></h2>
-        <button id="btnRemove" onclick="removeAll()" class="btn btn-action" style="height:32px; width:100%">Remove All Filters</button>
+        <h2 id="filtersss" style="text-shadow: 2px 2px #000000";>No Filters</h3>
+        
         <div class="field_guide_section">
             <iframe id="left_frame" src="fieldguide_data.html" style="height:550px;width:50%;"></iframe>
             <iframe id="right_frame" src="fieldguide_display.html" style="height:550px;width:50%;"></iframe>
@@ -489,7 +490,7 @@
             document.getElementById("subcat").textContent = "63"
             document.getElementById("fil").textContent = "63"
             document.getElementById("cat2").textContent = "N/A"
-            document.getElementById("filtersss").textContent = ''
+            document.getElementById("filtersss").textContent = 'No Filters'
         }
 
         function shower() {   
