@@ -23,6 +23,8 @@ window.onclick = function(event) {
 
 
     document.body.style.backgroundColor = "#384452";
+
+
     var dis_plant_code = parent.document.getElementById("plant_code")
     var display_species = parent.document.getElementById("display_species");
     var display_common_name = parent.document.getElementById("display_common_name");
@@ -1010,4 +1012,5 @@ setInterval(function() {
             }
         }
     }
+        document.body.style.background = "#384452 url('assets/img/apple.png')";
 }, 500);

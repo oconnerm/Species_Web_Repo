@@ -118,9 +118,7 @@
         verify_researcher_submit.classList.remove('hide');
         verify_researcher_quit.classList.remove('hide');
 
-        welcome_txt.classList.add('hide');
-        user_email.classList.add('hide');
-        user_status.classList.add('hide');
+
         reset_password_txt.classList.add('hide');
         verify_researcher_btn.classList.add('hide');
         btnLogout.classList.add('hide');
@@ -260,9 +258,7 @@
     reset_password_yes.classList.remove('hide');
     reset_password_no.classList.remove('hide');
 
-    welcome_txt.classList.add('hide');
-    user_email.classList.add('hide');
-    user_status.classList.add('hide');
+
     reset_password_txt.classList.add('hide');
     verify_researcher_btn.classList.add('hide');
     btnLogout.classList.add('hide');
@@ -374,17 +370,17 @@
         // TODO: Check marks to show verification progress
 
         if (snapshot.val().researcher <= 0) {
-          user_status.textContent = "Account: User";
+          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
           check_mark.classList.add('hide');
           check_mark2.classList.add('hide');
         }
         if (snapshot.val().researcher == 1) {
-          user_status.textContent = "Account: User";
+          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
           check_mark.classList.remove('hide');
           check_mark2.classList.add('hide');
         }
         if (snapshot.val().researcher == 2) {
-          user_status.textContent = "Account: User";
+          user_status.textContent = "Account: User (Get 3 Verifications to be a Researcher!)";
           check_mark.classList.remove('hide');
           check_mark2.classList.remove('hide');
         }
