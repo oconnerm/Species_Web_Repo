@@ -994,7 +994,7 @@
 
                 function create_zip() {
 
-                    var download_dictionary = "Species Name,Plant Code,Datetime,GPS Latitude,GPS Longitude,Verification,Username,Comments,Firebase Photo Name\r\n";
+                    var download_dictionary = "Species Name,Plant Code,Datetime,GPS Latitude,GPS Longitude,GPS Accuracy,Verification,Username,Comments,Firebase Photo Name\r\n";
                     var obervations_counter = 0;
 
                     obs_database.once("value").then(function(snapshot) {
@@ -1011,10 +1011,11 @@
                             var is_verified = childSnapshot.val().is_verified;
                             var username = childSnapshot.val().username;
                             var comments = childSnapshot.val().comments;
+                            var gps_accuracy = childSnapshot.val().gps_accuracy;
 
 
 
-                            download_dictionary = download_dictionary.concat(species_name + ',' + plant_code + ',' + datetime + ',' + gps_lat + ',' + gps_long + ',' + is_verified + ',' + username + ',' + comments + ',' + uid_timestamp_true + '\r\n')
+                            download_dictionary = download_dictionary.concat(species_name + ',' + plant_code + ',' + datetime + ',' + gps_lat + ',' + gps_long + ',' + gps_accuracy + ',' + is_verified + ',' + username + ',' + comments + ',' + uid_timestamp_true + '\r\n')
 
                             obervations_counter = obervations_counter + 1;
 
