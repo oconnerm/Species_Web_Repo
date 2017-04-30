@@ -563,11 +563,12 @@ div#container_obs h3 {
 	float: left; 
 	width: 32.3%;
 	padding: 0px 1% 10px 1%;
-	height: 198px;
+	height: 250px;
 }
 
 .columnh2_obs {
 	line-height: 200%;
+	margin-bottom: 200px;
 	color:#dddddd;
 }
 
