@@ -155,7 +155,7 @@
             <!-- Filter buttons -->
             <ul id="myDropdown" class="main-navigation">
                 <li>
-                    <a tableindex="-1" href="javascript:forbFilter('63','63');">Forbs</a>
+                    <a tableindex="-1" href="javascript:forbFilter('63','63');">Forbs (Flowering Plants)</a>
                     <ul>
                         <li>
                             <a tableindex="-1" href="#"> Flower Color </a>
@@ -261,7 +261,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a tableindex="-1" href="javascript:gramFilter('N/A', '63', '63');"> Graminoids </a>
+                    <a tableindex="-1" href="javascript:gramFilter('N/A', '63', '63');"> Graminoids (Grasses)</a>
                     <ul>
                         <li>
                             <a tableindex="-1" href="javascript:gramFilter('cyperaceae', '63', '63');"> Cyperaceae </a>
@@ -416,25 +416,32 @@
                                 <li>
                                     <a tableindex="-1" href="#"> Needle Arrangement</a>
                                     <ul>
-                                        <li> <a href="javascript:woodyFilter('needle', 'neddle_arrangement', 'solitary');"> solitary </a> </li>
-                                        <li> <a href="javascript:woodyFilter('needle', 'neddle_arrangement', 'fascicles');"> fascicles </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'needle_arrangement', 'solitary');"> solitary </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'needle_arrangement', 'fascicles');"> fascicles </a> </li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a tableindex="-1" href="#"> Needle Apex </a>
                                     <ul>
-                                        <li> <a href="javascript:woodyFilter('needle', 'neddle_apex', 'blunt');"> blunt </a> </li>
-                                        <li> <a href="javascript:woodyFilter('needle', 'neddle_apex', 'acute');"> acute </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'needle_apex', 'blunt');"> blunt </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'needle_apex', 'acute');"> acute </a> </li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a tableindex="-1" href="#"> Cone </a>
                                     <ul>
-                                        <li> <a href="javascript:woodyFilter('needle', 'cone', 'soft scales');">soft scales </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'cone', 'soft scales');"> soft scales </a> </li>
                                         <li> <a href="javascript:woodyFilter('needle', 'cone', 'hard scales');"> hard scales </a> </li>
                                         <li> <a href="javascript:woodyFilter('needle', 'cone', 'downward hanging');"> downward hanging </a> </li>
                                         <li> <a href="javascript:woodyFilter('needle', 'cone', 'upward growing');"> upward growing </a></li>
                                         <li> <a href="javascript:woodyFilter('needle', 'cone', 'prickle');"> prickle </a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a tableindex="-1" href="#"> Family Name </a>
+                                    <ul>
+                                        <li> <a href="javascript:woodyFilter('needle', 'family_name', 'Pinaceae');"> Pinaceae </a> </li>
+                                        <li> <a href="javascript:woodyFilter('needle', 'family_name', 'Cupressaceae');"> Cupressaceae </a> </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -445,10 +452,10 @@
                                 <li>
                                     <a tableindex="-1" href="#"> Leaf Margin </a>
                                     <ul>
-                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_marign', 'toothed');"> toothed </a> </li>
-                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_marign', 'lobed');"> lobed </a> </li>
-                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_marign', 'entire');"> entire </a> </li>
-                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_marign', 'undulate');"> undulate </a> </li>
+                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_margin', 'toothed');"> toothed </a> </li>
+                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_margin', 'lobed');"> lobed </a> </li>
+                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_margin', 'entire');"> entire </a> </li>
+                                        <li> <a href="javascript:woodyFilter('deciduous', 'leaf_margin', 'undulate');"> undulate </a> </li>
                                     </ul>
                                 </li>
                                 <li>
@@ -581,7 +588,7 @@
                     document.getElementById("category").textContent = "Forbs"
                     document.getElementById("subcat").textContent = subcat
                     document.getElementById("fil").textContent = fil
-                    document.getElementById("filtersss").textContent = "Forbs >> " + subcat + ' : ' + fil + ' , '
+                    document.getElementById("filtersss").textContent = "Forbs (Flowering Plants) >> " + subcat + ' : ' + fil + ' , '
                 }
             } else {
                 if (!(subcat == '63')) {
@@ -604,9 +611,9 @@
                     document.getElementById("filtersss").textContent = "Graminoids"
                 } else {
                     if (subcat == '63') {
-                        document.getElementById("filtersss").textContent = "Graminoids > " + category + " >> "
+                        document.getElementById("filtersss").textContent = "Graminoids (Grasses) > " + category + " >> "
                     } else {
-                        document.getElementById("filtersss").textContent = "Graminoids > " + category + " >> " + subcat + ' : ' + fil + ' , '
+                        document.getElementById("filtersss").textContent = "Graminoids (Grasses) > " + category + " >> " + subcat + ' : ' + fil + ' , '
                     }
                 }
 
@@ -615,9 +622,9 @@
                 document.getElementById("fil").textContent = fil
                 document.getElementById("cat2").textContent = category
                 if (subcat == '63') {
-                    document.getElementById("filtersss").textContent = "Graminoids > " + category + " >> "
+                    document.getElementById("filtersss").textContent = "Graminoids (Grasses) > " + category + " >> "
                 } else {
-                    document.getElementById("filtersss").textContent = "Graminoids > " + category + " >> " + subcat + ' : ' + fil + ' , '
+                    document.getElementById("filtersss").textContent = "Graminoids (Grasses) > " + category + " >> " + subcat + ' : ' + fil + ' , '
                 }
             } else {
                 if (!(subcat == '63')) {

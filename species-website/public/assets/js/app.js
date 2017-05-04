@@ -160,7 +160,7 @@
 
             if (researcher_val >= 3) {
 
-              emailjs.send("mailjet", "verify_researcher", {"link":"https://speciesid-ca814.firebaseapp.com/verify.html","email":email,"user_email":verify_email})
+              emailjs.send("mailjet", "verify_researcher", {"link":"https://luminousid.org/verify.html","email":email,"user_email":verify_email})
 
               verify_researcher_text.classList.add('hide');
               verify_researcher_input.classList.add('hide');

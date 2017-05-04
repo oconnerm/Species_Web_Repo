@@ -73,6 +73,10 @@
     <div id="twrap">
 
         <h1 style="text-shadow: 2px 2px #000000">Observations</h1>
+
+        <h2></h2>
+        <h4 id="total_observations" style="text-shadow: 1px 1px #000000" ;>Total: </h4>
+
         <button id="verified_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers_verified();">Verified</button>
         <button id="not_verified_btn" class="btn btn-action" style="height:32px;width:120px" onclick="showMarkers_not_verified();">Not Verified</button>
         <button id="all_btn" class="btn btn-action" style="height:32px;width:90px" onclick="showMarkers();">All</button>
@@ -613,7 +617,10 @@
                     var observation_2_img = document.getElementById('observation_2_img');
                     var observation_3_img = document.getElementById('observation_3_img');
 
+                    var total_observations = document.getElementById('total_observations');
+
                     var recent_obs_data = firebase.database().ref("speciesid/observations").orderByKey();
+
                     recent_obs_data.once("value").then(function(snapshot) {
                         snapshot.forEach(function(childSnapshot) {
 
@@ -624,6 +631,10 @@
                             var comments = childSnapshot.val().comments;
 
                             observation_array.push(observation_id);
+
+                            //alert(observation_array.length);
+
+                            total_observations.textContent = "Total: " + observation_array.length
 
                             firebase.database().ref("speciesid/observations").once("value").then(function(snapshot) {
 
@@ -1041,9 +1052,9 @@
 
             <div id="show_recent_observations" style="clear:both;">
                 <div id="container_obs">
-                    <h3><span id="observation_1" class="columnh2_obs"></span><img id="observation_1_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span id="observation_1_name" class="columnh2_obs"></span><br/><span id="observation_1_comments" class="columnh2_obs"></span></h3>
-                    <h3><span id="observation_2" class="columnh2_obs"></span><img id="observation_2_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span id="observation_2_name" class="columnh2_obs"></span><br/><span id="observation_2_comments" class="columnh2_obs"></span></h3>
-                    <h3><span id="observation_3" class="columnh2_obs"></span><img id="observation_3_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span id="observation_3_name" class="columnh2_obs"></span><br/><span id="observation_3_comments" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_1" style="font-size:18px" class="columnh2_obs"></span><img id="observation_1_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_1_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_1_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_2" style="font-size:18px" class="columnh2_obs"></span><img id="observation_2_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_2_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_2_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_3" style="font-size:18px" class="columnh2_obs"></span><img id="observation_3_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_3_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_3_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
                 </div>
             </div>
 
@@ -1095,6 +1106,7 @@
                     <h4 id="display_comments" style="float:right;width:50%;"></h4>
                 </div>
             </div>
+            <h2 style="clear: both;text-align:center;color:#dddddd;">All Observations</h2>
         </div>
     </div>
 </body>
