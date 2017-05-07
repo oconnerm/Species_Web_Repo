@@ -1048,13 +1048,13 @@
 
                 google.maps.event.addDomListener(window, 'load', initMap);
             </script>
-            <h2 id="display_recent_observations" style="text-align:center;color:#dddddd;">Recent Observations</h2>
+            <h2 id="display_recent_observations" style="text-align:center;color:#ffffff;">Recent Observations</h2>
 
             <div id="show_recent_observations" style="clear:both;">
                 <div id="container_obs">
-                    <h3><span id="observation_1" style="font-size:16px" class="columnh2_obs"></span><img id="observation_1_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_1_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_1_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
-                    <h3><span id="observation_2" style="font-size:16px" class="columnh2_obs"></span><img id="observation_2_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_2_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_2_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
-                    <h3><span id="observation_3" style="font-size:16px" class="columnh2_obs"></span><img id="observation_3_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_3_name" class="columnh2_obs"></span><br/><span style="font-size:14px;color:#aaaaaa;">Comments: </span><span id="observation_3_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_1" style="font-size:14px" class="columnh2_obs"></span><img id="observation_1_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_1_name" class="columnh2_obs"></span><br/><span style="font-size:16px;color:#aaaaaa;">Comments: </span><span id="observation_1_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_2" style="font-size:14px" class="columnh2_obs"></span><img id="observation_2_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_2_name" class="columnh2_obs"></span><br/><span style="font-size:16px;color:#aaaaaa;">Comments: </span><span id="observation_2_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
+                    <h3><span id="observation_3" style="font-size:14px" class="columnh2_obs"></span><img id="observation_3_img" class="img_obs" border="0" width="80" height="80" /><br/><br/><br/><br/><br/><br/><br/><br/><span style="font-size:14px;color:#aaaaaa;">User: </span><span id="observation_3_name" class="columnh2_obs"></span><br/><span style="font-size:16px;color:#aaaaaa;">Comments: </span><span id="observation_3_comments" style="font-size:16px" class="columnh2_obs"></span></h3>
                 </div>
             </div>
 
@@ -1106,7 +1106,14 @@
                     <h4 id="display_comments" style="float:right;width:50%;"></h4>
                 </div>
             </div>
-            <h2 style="clear: both;text-align:center;color:#dddddd;">All Observations</h2>
+            <h2 style="clear: both;text-align:center;color:#ffffff;">All Observations</h2>
+
+            <h3 style="float:left;color:#dddddd;width:33%;font-size:16px">Species Name</h3>
+            <h3 style="float:left;color:#dddddd;width:33%;font-size:16px">User</h3>
+            <h3 style="float:left;color:#dddddd;width:33%;font-size:16px">Date</h3>
+
+            <iframe id="all_obs_frame" src="all_obs.html" style="height:550px;"></iframe>
+
         </div>
     </div>
 </body>
