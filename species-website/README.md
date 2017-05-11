@@ -22,6 +22,8 @@ The effort to create this website and apps was made possible by the Computer Sci
 
 To deploy this website you'll need to install of Google Firebase-tools. Once that's installed, a simple 'firebase deploy' should allow you deploy any changes live at luminousid.org. The source code can be edited in an text editor. For any help deploying this source code, see the Firebase documentation on their website.
 
+More documentation can be viewed at our [Google Docs](https://drive.google.com/drive/folders/0B9fTybPvTo_ILWVrbnM1ZTdyOXc?ths=true) page.
+
 ## Tests
 
 Opening any of the pages on a local system can be used for testing.
